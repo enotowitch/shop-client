@@ -24,3 +24,9 @@ yarn-error.log*
 
 flow.txt
 public/img
+*.svg
+*.png
+*.webp
+*.jpg
+*.jpeg
+*.gif

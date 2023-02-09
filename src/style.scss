@@ -7,8 +7,9 @@
 
 // ! VARS
 $white: #fff;
-$gray: #b3b3b3;
+$gray: #666666;
 $black: #000;
+$brandColor: #11ff11;
 
 // ! LOGIN
 .login{ // this is form
@@ -59,7 +60,6 @@ img{
 		color: $white;
 		border: none;
 		border-radius: 20px;
-		background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
 	}
 }
 .bg{
@@ -69,11 +69,60 @@ img{
 	top: 0;
 	left: 0;
 }
+.loginBtn{
+	background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
+}
+.logoutBtn{
+	background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);
+}
 // ? LOGIN
+
+// ! PROD
+.prod{
+	display: inline-block;
+	border: 2px solid red;
+	border-radius: 12px;
+	width: calc(320px / 2);
+	padding: 15px;
+	&__photo{
+		width: 100%;
+	}
+	// !!!
+	div{
+		text-align: center;
+		margin-top: 10px;
+	}
+	&__icon{
+		height: 30px;
+	}
+	&__title{
+		color: $gray;
+	}
+	&__price{
+		color: $brandColor;
+	}
+}
+// ? PROD
+
+// ! HEADER
+.header{
+	position: relative;
+	&__icon{
+		height: 40px;
+		width: 40px;
+	}
+}
+// ? HEADER
 
 // ! OTHER
 .zi2{
 	z-index: 2;
+}
+.zi3{
+	z-index: 3;
+}
+.zi9{
+	z-index: 9;
 }
 .m0a{
 	margin: 0 auto;
@@ -81,9 +130,16 @@ img{
 .mt{
 	margin-top: 15px;
 }
+.mt2{
+	margin-top: 30px;
+}
 .mb{
 	margin-bottom: 15px;
 }
 .tac{
 	text-align: center;
+}
+.fsb{
+	display: flex;
+	justify-content: space-between;
 }
