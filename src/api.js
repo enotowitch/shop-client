@@ -5,6 +5,12 @@ const instance = axios.create({
 	baseURL: baseURL
 })
 
+instance.interceptors.request.use(config => {
+	config.headers.Authorization = localStorage.getItem("token")
+	return config
+})
+
+
 // ! user
 // type = login or register
 export const authType = async (type, form) => {
@@ -29,11 +35,21 @@ export const auth = async () => {
 		alert("FAIL TO AUTH")
 	}
 }
+
+export const liked = async (_id) => {
+	const { data } = await instance.patch("user/liked", { _id })
+	console.log(data)
+}
+
+export const carted = async (_id) => {
+	const { data } = await instance.patch("user/carted", { _id })
+	console.log(data)
+}
 // ? user
 
 // !! prod
-// ! add
-export const add = async (form) => {
+// ! addProd
+export const addProd = async (form) => {
 	try {
 		// const token = localStorage.getItem("token") // todo
 		const { data: prodData } = await instance.post(`prod`, form)
@@ -44,8 +60,8 @@ export const add = async (form) => {
 	}
 }
 
-// ! get
-export const get = async (form) => {
+// ! getAllProd
+export const getAllProd = async (form) => {
 	try {
 		const { data: prodData } = await instance.get(`prod`, form)
 		return prodData
@@ -53,5 +69,11 @@ export const get = async (form) => {
 		console.log(err)
 		alert("FAIL TO get products")
 	}
+}
+
+// ! getOneProd
+export const getOneProd = async (_id) => {
+	const { data } = await instance.post(`prod/${_id}`)
+	return data
 }
 // ?? prod

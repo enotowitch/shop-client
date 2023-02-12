@@ -13,7 +13,6 @@ export default function Header() {
 
 	const { user } = useContext(Context)
 
-	const isCart = false // todo
 	const isAdmin = true // todo
 
 	const profileIcon = () => (
@@ -23,7 +22,7 @@ export default function Header() {
 	)
 
 	const cartIcon = () => (
-		isCart
+		user?.carted?.length > 0
 			? <Link to="/cart"><img className="header__icon" src={carted} /></Link>
 			: <Link to="/cart"><img className="header__icon" src={cart} /></Link>
 	)

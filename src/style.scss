@@ -79,10 +79,16 @@ img{
 
 // ! PROD
 .prod{
+	&_small{
+		width: calc(320px / 2);
+	}
+	&_big{
+		width: 320px;
+	}
+	position: relative;
 	display: inline-block;
 	border: 2px solid red;
 	border-radius: 12px;
-	width: calc(320px / 2);
 	padding: 15px;
 	&__photo{
 		width: 100%;

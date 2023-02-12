@@ -17,12 +17,14 @@ function ContextProvider(props) {
 
 		auth()
 	}, [])
+
+	console.log(`HELLO, ${user?.email}`)
 	// ? user
 
 	// ! prods
 	useEffect(() => {
 		async function getProds() {
-			const prodData = await api.get()
+			const prodData = await api.getAllProd()
 			console.log(prodData)
 			prodsSet(prodData)
 		}

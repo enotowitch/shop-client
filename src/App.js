@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom"
 import Login from "./components/Login"
 import Add from "./components/Add"
 import Cart from "./components/Cart"
+import ProdFull from "./components/ProdFull"
 
 
 export default function App() {
@@ -17,6 +18,8 @@ export default function App() {
 				<Route path="/profile" element={<Login />} />
 				<Route path="/add" element={<Add />} />
 				<Route path="/cart" element={<Cart />} />
+
+				<Route path="prod/:id" element={<ProdFull />} />
 			</Routes>
 		</>
 	)
