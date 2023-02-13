@@ -6,7 +6,7 @@ export default function Prods() {
 
 	const { prods } = useContext(Context)
 
-	const prods_ = prods?.map(prod => <Prod obj={prod} />)
+	const prods_ = prods?.map(prod => <Prod key={prod._id} obj={prod} />)
 
 	return (
 		<>

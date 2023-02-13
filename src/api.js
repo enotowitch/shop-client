@@ -32,7 +32,7 @@ export const auth = async () => {
 		return userData
 	} catch (err) {
 		console.log(err)
-		alert("FAIL TO AUTH")
+		// alert("FAIL TO AUTH")
 	}
 }
 
@@ -67,7 +67,7 @@ export const getAllProd = async (form) => {
 		return prodData
 	} catch (err) {
 		console.log(err)
-		alert("FAIL TO get products")
+		// alert("FAIL TO get products")
 	}
 }
 
@@ -77,3 +77,10 @@ export const getOneProd = async (_id) => {
 	return data
 }
 // ?? prod
+
+// ! search
+export const search = async (query) => {
+	const { data } = await instance.get(`search/${query}`)
+	return data
+}
+// ? search

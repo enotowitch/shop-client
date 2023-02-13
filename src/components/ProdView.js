@@ -5,6 +5,7 @@ import cart from "../img/cart.svg"
 import carted from "../img/carted.svg"
 import * as api from "../api"
 import { Context } from "../Context"
+import SearchLink from "./links/SearchLink"
 
 
 export default function ProdView(props) {
@@ -42,7 +43,10 @@ export default function ProdView(props) {
 		await api.carted(_id)
 	}
 
+	const cats_ = cats.split(",").map(cat => <SearchLink searchValue={cat} field="cats"><span className="prod__cat">{cat}</span></SearchLink>)
 
+
+	// ! RETURN
 	return (
 		<div className={`prod prod_${size} `}>
 			<div className="fsb mb">
@@ -56,6 +60,8 @@ export default function ProdView(props) {
 			{props.children}
 
 			<div className="prod__price">{price}</div>
+
+			{cats_}
 		</div>
 	)
 }

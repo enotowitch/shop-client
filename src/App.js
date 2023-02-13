@@ -6,6 +6,7 @@ import Login from "./components/Login"
 import Add from "./components/Add"
 import Cart from "./components/Cart"
 import ProdFull from "./components/ProdFull"
+import Search from "./components/Search"
 
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
 				<Route path="/cart" element={<Cart />} />
 
 				<Route path="prod/:id" element={<ProdFull />} />
+				<Route path="search/:query" element={<Search />} />
 			</Routes>
 		</>
 	)

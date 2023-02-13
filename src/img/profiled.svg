@@ -1,10 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="style=fill">
-<g id="profile">
-<path id="vector (Stroke)" fill-rule="evenodd" clip-rule="evenodd" d="M6.75 6.5C6.75 3.6005 9.1005 1.25 12 1.25C14.8995 1.25 17.25 3.6005 17.25 6.5C17.25 9.3995 14.8995 11.75 12 11.75C9.1005 11.75 6.75 9.3995 6.75 6.5Z" fill="#000000"/>
-<path id="rec (Stroke)" fill-rule="evenodd" clip-rule="evenodd" d="M4.25 18.5714C4.25 15.6325 6.63249 13.25 9.57143 13.25H14.4286C17.3675 13.25 19.75 15.6325 19.75 18.5714C19.75 20.8792 17.8792 22.75 15.5714 22.75H8.42857C6.12081 22.75 4.25 20.8792 4.25 18.5714Z" fill="#000000"/>
-</g>
-</g>
+<svg width="700" height="800" viewBox="0 0 700 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M350.001 422.718C434.16 422.718 502.386 344.746 502.386 248.564C502.386 152.381 434.16 74.4092 350.001 74.4092C265.841 74.4092 197.616 152.381 197.616 248.564C197.616 344.746 265.841 422.718 350.001 422.718Z" fill="black" stroke="black" stroke-width="32" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M247.959 377.152C247.621 377.152 247.621 377.152 247.283 377.539" stroke="#0F0F0F" stroke-width="32" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M517.928 412.292C605.44 473.304 664.907 581.04 670.989 704.995C671.327 716.194 663.556 725.461 653.757 725.461H46.2426C36.444 725.461 28.6727 716.194 29.0106 704.995C35.0925 581.813 94.222 474.462 180.72 413.45" stroke="black" stroke-width="32" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
