@@ -8,7 +8,7 @@ export default function Prod(props) {
 
 	return (
 		<Link to={`/prod/${_id}`} >
-			<ProdView obj={props.obj} size="small" />
+			<ProdView obj={props.obj} mode="small" />
 		</Link>
 	)
 }

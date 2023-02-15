@@ -5,16 +5,31 @@
 	font-family: Roboto;
 }
 
-// ! VARS
+// !! VARS
+// ! color
 $white: #fff;
 $gray: #666666;
 $black: #000;
-$brandColor: #11ff11;
+$brand: #ffac11;
+// ! width
+$widthSmall: 320px;
+// ?? VARS
+
+// ! GLOBAL
+button{
+	width: 100%;
+	height: 30px;
+	margin-top: 30px;
+	color: $white;
+	border: none;
+	border-radius: 20px;
+}
+// ? GLOBAL
 
 // ! LOGIN
 .login{ // this is form
 	position: relative;
-	width: 320px;
+	width: $widthSmall;
 	padding: 15px;
 	background: $white;
 	border-radius: 8px;
@@ -52,15 +67,6 @@ img{
 			border-bottom: 2px solid $black;
 		}
 	}
-
-	button{
-		width: 100%;
-		height: 30px;
-		margin-top: 30px;
-		color: $white;
-		border: none;
-		border-radius: 20px;
-	}
 }
 .bg{
 	width: 100%;
@@ -79,20 +85,37 @@ img{
 
 // ! PROD
 .prod{
+	min-width: $widthSmall; // todo
 	&_small{
-		width: calc(320px / 2);
+		width: calc($widthSmall / 2);
 	}
 	&_big{
-		width: 320px;
+		width: calc($widthSmall * 2);
+	}
+	&_cart{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		// !!!
+		img:not([src*="media/del"]){
+			width: 100px;
+		}
 	}
 	position: relative;
 	display: inline-block;
-	border: 2px solid red;
+	border: 2px solid $brand;
 	border-radius: 12px;
 	padding: 15px;
+	// ! photo
 	&__photo{
 		width: 100%;
+		height: 100px;
+		object-fit: contain;
 	}
+	&_big &__photo{
+		height: 200px;
+	}
+	// ? photo
 	// !!!
 	div{
 		text-align: center;
@@ -106,7 +129,7 @@ img{
 		color: $gray;
 	}
 	&__price{
-		color: $brandColor;
+		color: $brand;
 		margin-bottom: 10px;
 	}
 	&__cat{
@@ -116,8 +139,41 @@ img{
 		padding: 6px;
 		margin-left: 6px;
 	}
+	&__counter{
+		border: 1px solid $black;
+		padding: 4px;
+		// !!!
+		span {
+			color: $gray;
+			padding: 4px 10px;
+			font-size: 22px;
+		}
+	}
 }
 // ? PROD
+
+// ! CART
+.cart{
+	&__wrap{
+		display: flex;
+		flex-wrap: wrap;
+	}
+	&__prods{
+		display: flex;
+		flex-direction: column;
+		width: 50%;
+	}
+}
+.total{
+	border: 2px solid $brand;
+	width: $widthSmall;
+}
+.checkoutBtn{
+	background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+	// OR
+	// background-image: linear-gradient(120deg, lighten($brand, 10%) 0%, darken($brand, 10%) 100%);
+}
+// ? CART
 
 // ! HEADER
 .header{
@@ -144,7 +200,6 @@ img{
 	flex-wrap: wrap;
 	width: 100%;
 	background: $white;
-	border: 2px solid red;
 	// !!! one cat
 	span{
 		padding: 10px;
@@ -157,7 +212,7 @@ img{
 	&__form{
 		display: flex;
 		flex-direction: column;
-		max-width: 320px;
+		max-width: $widthSmall;
 		margin: 0 auto;
 	}
 }
@@ -185,8 +240,20 @@ img{
 .mb{
 	margin-bottom: 15px;
 }
+.mlr{
+	margin: 0 15px 0 15px;
+}
+.m{
+	margin: 15px;
+}
+.p{
+	padding: 15px;
+}
 .tac{
 	text-align: center;
+}
+.f{
+	display: flex;
 }
 .fsb{
 	display: flex;

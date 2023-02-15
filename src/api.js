@@ -41,8 +41,8 @@ export const liked = async (_id) => {
 	console.log(data)
 }
 
-export const carted = async (_id) => {
-	const { data } = await instance.patch("user/carted", { _id })
+export const carted = async (_id, type = "one") => {
+	const { data } = await instance.patch("user/carted", { _id, type })
 	console.log(data)
 }
 // ? user
@@ -79,7 +79,7 @@ export const getAllProd = async (form) => {
 
 // ! getOneProd
 export const getOneProd = async (_id) => {
-	const { data } = await instance.post(`prod/${_id}`)
+	const { data } = await instance.get(`prod/${_id}`)
 	return data
 }
 // ?? prod

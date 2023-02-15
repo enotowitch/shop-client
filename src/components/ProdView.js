@@ -6,13 +6,15 @@ import carted from "../img/carted.svg"
 import * as api from "../api"
 import { Context } from "../Context"
 import SearchLink from "./links/SearchLink"
+import del from "../img/del.svg"
+import { currency } from "../consts"
 
 
 export default function ProdView(props) {
-	const { user } = useContext(Context)
+	const { user, userSet } = useContext(Context)
 
 	const { title, cats, text, imgUrl, price, _id } = props.obj
-	const { size } = props
+	const { mode } = props
 
 	const [isLiked, isLikedSet] = useState(user?.liked.includes(_id))
 	const [isCarted, isCartedSet] = useState(user?.carted.includes(_id))
@@ -39,29 +41,63 @@ export default function ProdView(props) {
 	async function cartProd(e, _id) {
 		e.stopPropagation()
 		e.preventDefault()
-		isCartedSet(prev => !prev)
-		await api.carted(_id)
+		isCartedSet(prev => !prev) // rerender icon
+		await api.carted(_id) // add/remove from db
+		userSet(prev => ({ ...prev, carted: prev?.carted.filter(id => id !== _id) })) // add/remove from Context (state)
 	}
 
-	const cats_ = cats.split(",").map(cat => <SearchLink searchValue={cat} field="cats"><span className="prod__cat">{cat}</span></SearchLink>)
+	const cats_ = cats?.split(",").map(cat => <SearchLink searchValue={cat} field="cats"><span className="prod__cat">{cat}</span></SearchLink>)
+
+	// ! counter
+	const quantity = user?.carted.filter(id => id === _id).length // user carted same prod (pieces)
+
+	const [counter, counterSet] = useState(quantity)
+
+	async function handleCounter(act) {
+		if (act === "-") {
+			counterSet(prev => prev > 1 ? prev - 1 : 1)
+			await api.carted(_id, "many-")
+		}
+		if (act === "+") {
+			counterSet(prev => prev + 1)
+			await api.carted(_id, "many+")
+		}
+
+	}
+	// ? counter
 
 
 	// ! RETURN
 	return (
-		<div className={`prod prod_${size} `}>
+		<div className={`prod prod_${mode}`}>
 			<div className="fsb mb">
-				{likeIcon()}
-				{cartIcon()}
+				{mode !== "cart" && likeIcon()}
+				{mode !== "cart" && cartIcon()}
 			</div>
 			<img className="prod__photo" src={imgUrl} />
 
-			<div className="prod__title">{title}</div>
+			<div>
+				<div className="prod__title">{title}</div>
 
-			{props.children}
+				{props.children}
 
-			<div className="prod__price">{price}</div>
+				<div className="prod__price">{currency}{price}</div>
+			</div>
 
-			{cats_}
+			{mode !== "cart" && cats_}
+
+			{/* CART */}
+			{mode === "cart" &&
+				<>
+					<div className="prod__counter">
+						<span onClick={() => handleCounter("-")}>-</span>
+						{counter}
+						<span onClick={() => handleCounter("+")}>+</span>
+					</div>
+
+					<img src={del} onClick={(e) => cartProd(e, _id)} />
+				</>
+			}
 		</div>
 	)
 }
