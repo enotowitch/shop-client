@@ -122,7 +122,6 @@ img{
 // ! HEADER
 .header{
 	&__wrap{
-		border: 2px solid red;
 		display: flex;
 		justify-content: center;
 	}
@@ -143,6 +142,7 @@ img{
 	position: relative;
 	display: flex;
 	flex-wrap: wrap;
+	width: 100%;
 	background: $white;
 	border: 2px solid red;
 	// !!! one cat
@@ -151,6 +151,17 @@ img{
 	}
 }
 // ? HEADER
+
+// ! ADD
+.add{
+	&__form{
+		display: flex;
+		flex-direction: column;
+		max-width: 320px;
+		margin: 0 auto;
+	}
+}
+// ? ADD
 
 // ! OTHER
 .zi2{

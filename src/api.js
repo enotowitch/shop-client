@@ -51,20 +51,26 @@ export const carted = async (_id) => {
 // ! addProd
 export const addProd = async (form) => {
 	try {
-		// const token = localStorage.getItem("token") // todo
-		const { data: prodData } = await instance.post(`prod`, form)
-		return prodData
+		const { data } = await instance.post(`prod`, form)
+		return data
 	} catch (err) {
 		console.log(err)
 		alert("FAIL TO add product")
 	}
 }
+// ! uploadProdImg
+export const uploadProdImg = async (formData) => {
+	try {
+		const { data } = await instance.post(`upload`, formData)
+		return data
+	} catch (err) { console.log(err) }
+}
 
 // ! getAllProd
 export const getAllProd = async (form) => {
 	try {
-		const { data: prodData } = await instance.get(`prod`, form)
-		return prodData
+		const { data } = await instance.get(`prod`, form)
+		return data
 	} catch (err) {
 		console.log(err)
 		// alert("FAIL TO get products")

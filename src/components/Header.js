@@ -89,6 +89,9 @@ export default function Header() {
 					onChange={(e) => valueSet(e.target.value)}
 				/>
 				{searchIcon()}
+			</div>
+
+			<div className="header__wrap">
 
 				{profileIcon()}
 				{likeIcon()}
@@ -100,7 +103,7 @@ export default function Header() {
 				<div className="cats zi2">
 					{cats_}
 				</div>}
-				
+
 		</div>
 	)
 }
