@@ -7,6 +7,7 @@ import Add from "./components/Add"
 import Cart from "./components/Cart"
 import ProdFull from "./components/ProdFull"
 import Search from "./components/Search"
+import Like from "./components/Like"
 
 
 export default function App() {
@@ -18,7 +19,9 @@ export default function App() {
 				<Route path="/" element={<Prods />} />
 				<Route path="/profile" element={<Login />} />
 				<Route path="/add" element={<Add />} />
+				<Route path="/upd/:id" element={<Add />} />
 				<Route path="/cart" element={<Cart />} />
+				<Route path="/like" element={<Like />} />
 
 				<Route path="prod/:id" element={<ProdFull />} />
 				<Route path="search/:query" element={<Search />} />

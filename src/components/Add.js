@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import * as api from "../api"
+import { useNavigate, useParams } from "react-router-dom"
+import imgDummy from "../img/img.svg"
 
 export default function Add() {
 
+	const navigate = useNavigate()
+
 	const [form, formSet] = useState(
+		JSON.parse(localStorage.getItem("addForm"))
+		||
 		{
 			title: "",
 			weight: "",
@@ -24,32 +30,64 @@ export default function Add() {
 			api.addProd({ title: "Корица", weight: "30", cats: "Cпеции", text: "Кори́ца, или Кори́чник цейло́нский (лат. Cinnamomum verum) — вечнозелёное дерево, вид рода Коричник (Cinnamomum) семейства Лавровые (Lauraceae). Корицей также называется и высушенная кора дерева, которая используется в качестве пряности.", imgUrl: "https://n1s1.hsmedia.ru/51/6b/33/516b33298166748b65afd852b3ee75ea/1000x745_0xac120003_19273727461562657802.jpg", price: "16" })
 		}
 
-		test()
+		!localStorage.getItem("test") && test() // run test once
+		localStorage.setItem("test", true)
 	}, [])
 	// ? TODO - TEST REMOVE LATER
 
 	// !handleChange
 	function handleChange(e) {
 		formSet(prev => ({ ...prev, [e.target.name]: e.target.value }))
+		localStorage.setItem("addForm", JSON.stringify(form))
 	}
 
-	// ! handleSubmit
-	async function handleSubmit(e) {
-		e.preventDefault()
-
-		const res = await api.addProd(form)
-		console.log(res) // todo
-	}
 
 	// ! handleChangeFile
+	const fileRef = useRef(null)
+	const [imgLoaded, imgLoadedSet] = useState(false)
+
 	const handleChangeFile = async (e) => {
 		const formData = new FormData()
 		formData.append("image", e.target.files[0])
 
 		const img = await api.uploadProdImg(formData)
 		formSet(prev => ({ ...prev, imgUrl: img.url }))
-	};
+		imgLoadedSet(img.url)
+	}
+	// ? handleChangeFile
 
+	// ! UPDATE
+	const { id: updateId } = useParams()
+
+	useEffect(() => {
+		if (updateId) {
+			async function getProdInfo() {
+				const res = await api.getOneProd(updateId)
+				formSet(res) // fill prod form 
+				imgLoadedSet(res.imgUrl)
+			}
+
+			getProdInfo()
+		}
+	}, [])
+	// ? UPDATE
+
+	// ! handleSubmit
+	async function handleSubmit(e) {
+		e.preventDefault()
+
+		let res
+		if (!updateId) {
+			res = await api.addProd(form)
+		} else {
+			res = await api.updProd(updateId, form)
+		}
+
+		if (res) {
+			localStorage.removeItem("addForm")
+			navigate("/")
+		}
+	}
 
 	// ! RETURN
 	return (
@@ -88,10 +126,14 @@ export default function Add() {
 			/>
 
 			<input
+				hidden
+				ref={fileRef}
 				type="file"
 				name="imgUrl"
 				onChange={handleChangeFile}
 			/>
+
+			<img src={imgLoaded || imgDummy} onClick={() => fileRef.current.click()} />
 
 			<input
 				type="text"
@@ -101,7 +143,9 @@ export default function Add() {
 				placeholder="price"
 			/>
 
-			<button>add product</button>
+			<button className="brandBtn">{!updateId ? "add" : "update"} product</button>
+
+			<button onClick={() => (localStorage.removeItem("test"), window.location.href = "/")}>test</button>
 
 		</form>
 	)

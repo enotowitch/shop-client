@@ -43,7 +43,7 @@ export const liked = async (_id) => {
 
 export const carted = async (_id, type = "one") => {
 	const { data } = await instance.patch("user/carted", { _id, type })
-	console.log(data)
+	return data
 }
 // ? user
 
@@ -82,6 +82,17 @@ export const getOneProd = async (_id) => {
 	const { data } = await instance.get(`prod/${_id}`)
 	return data
 }
+// ! delProd
+export const delProd = async (_id) => {
+	const { data } = await instance.delete(`prod/${_id}`)
+	return data
+}
+// ! updProd
+export const updProd = async (_id, form) => {
+	const { data } = await instance.patch(`prod/${_id}`, form)
+	return data
+}
+
 // ?? prod
 
 // ! search

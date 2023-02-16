@@ -17,7 +17,7 @@ export default function Search() {
 		search()
 	}, [query])
 
-	const prods_ = searched?.map(prod => <Prod obj={prod} />)
+	const prods_ = searched?.map(prod => <Prod key={prod._id} obj={prod} />)
 
 	return (
 		<>

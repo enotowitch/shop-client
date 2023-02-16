@@ -11,12 +11,13 @@ export default function Cart() {
 
 	let total = 0
 
-	const userProds = userCarted?.map(prod => {
+	const userCart = userCarted?.map(prod => {
 
 		const thisProdQuantity = user?.carted.filter(id => id === prod._id).length
+		const thisProdTotal = prod.price * thisProdQuantity
 		total += prod.price * thisProdQuantity
 
-		return <ProdView obj={prod} mode="cart">
+		return <ProdView key={prod._id} obj={prod} mode="cart" thisTotal={thisProdTotal}>
 			<div>{prod.weight}{weight}</div>
 		</ProdView>
 	})
@@ -27,7 +28,7 @@ export default function Cart() {
 		<div className="cart__wrap">
 
 			<div className="cart__prods">
-				{userProds}
+				{userCart}
 			</div>
 
 			<div className="total p">
@@ -41,7 +42,9 @@ export default function Cart() {
 					type="textarea"
 				/>
 
-				<button className="checkoutBtn">Checkout</button>
+				<div>Please check the details of your order carefully, by continuing you acknowledge that your order cannot be changed once submitted.</div>
+
+				<button className="brandBtn">Checkout</button>
 			</div>
 		</div>
 	)

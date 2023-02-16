@@ -5,10 +5,10 @@ const Context = React.createContext()
 
 function ContextProvider(props) {
 
-	const [user, userSet] = useState()
-	const [prods, prodsSet] = useState()
-
 	// ! user
+	const [user, userSet] = useState()
+	const [userUpd, userUpdSet] = useState(0) // counter
+
 	useEffect(() => {
 		async function auth() {
 			const userData = await api.auth()
@@ -16,12 +16,17 @@ function ContextProvider(props) {
 		}
 
 		auth()
-	}, [])
+	}, [userUpd])
 
-	console.log(`HELLO, ${user?.email}`)
+	function userUpdate() {
+		userUpdSet(prev => prev + 1)
+	}
 	// ? user
 
 	// ! prods
+	const [prods, prodsSet] = useState()
+	const [prodsUpd, prodsUpdSet] = useState(0) // counter
+
 	useEffect(() => {
 		async function getProds() {
 			const prodData = await api.getAllProd()
@@ -30,12 +35,22 @@ function ContextProvider(props) {
 		}
 
 		getProds()
-	}, [])
+	}, [prodsUpd])
+
+	function prodsUpdate() {
+		prodsUpdSet(prev => prev + 1)
+	}
 	// ? prods
 
 
 	return (
-		<Context.Provider value={{ user, userSet, prods }}>
+		<Context.Provider value={{
+			user, // get full user info
+			userSet, // used for null user (e.g: logout)
+			userUpdate, // redraw user info (e.g: cart, likes...)
+			prods, // get all prods
+			prodsUpdate // redraw prods info (e.g: delProd)
+		}}>
 			{props.children}
 		</Context.Provider>
 	)

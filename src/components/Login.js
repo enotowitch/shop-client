@@ -1,12 +1,11 @@
 import React, { useContext, useState } from "react"
 import * as api from "../api"
-import bg from "../img/bg.webp"
 import { Context } from "../Context"
 import { useNavigate } from "react-router-dom"
 
 export default function Login() {
 
-	const { user, userSet } = useContext(Context)
+	const { user, userSet, userUpdate } = useContext(Context)
 	const navigate = useNavigate()
 
 	const [form, formSet] = useState({ email: "", password: "" })
@@ -22,6 +21,7 @@ export default function Login() {
 		type === "Register" && (res = await api.authType("register", form))
 		type === "Login" && (res = await api.authType("login", form))
 		res && navigate("/")
+		userUpdate()
 	}
 
 	function logout() {
@@ -80,8 +80,6 @@ export default function Login() {
 
 
 			</form>
-
-			<img className="bg zi2" src={bg} />
 		</>
 	)
 }

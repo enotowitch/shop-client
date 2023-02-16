@@ -67,7 +67,7 @@ export default function Header() {
 		prod.cats.split(", ").map(cat => !cats.includes(cat) && cats.push(cat))
 	})
 
-	const cats_ = cats.map(cat => <SearchLink searchValue={cat} field="cats"><span>{cat}</span></SearchLink>)
+	const cats_ = cats.map(cat => <SearchLink key={cat} searchValue={cat} field="cats"><span>{cat}</span></SearchLink>)
 	// ? cats
 
 	// search input value
