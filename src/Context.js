@@ -30,7 +30,7 @@ function ContextProvider(props) {
 	useEffect(() => {
 		async function getProds() {
 			const prodData = await api.getAllProd()
-			console.log(prodData)
+			// console.log(prodData)
 			prodsSet(prodData)
 		}
 

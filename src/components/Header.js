@@ -43,11 +43,17 @@ export default function Header() {
 			: <Link to="/like"><img className="header__icon" src={like} /></Link>
 	)
 
-	const cartIcon = () => (
-		user?.carted?.length > 0
-			? <Link to="/cart"><img className="header__icon" src={carted} /></Link>
+	const cartIcon = () => {
+		const uniqId = []
+		user?.carted.map(id => !uniqId.includes(id) && (uniqId.push(id)))
+
+		return user?.carted?.length > 0
+			? <Link to="/cart">
+				<img className="header__icon" src={carted} />
+				<span className="cart__num">{uniqId?.length}</span>
+			</Link>
 			: <Link to="/cart"><img className="header__icon" src={cart} /></Link>
-	)
+	}
 
 	const addIcon = () => (
 		isAdmin

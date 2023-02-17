@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react"
-import Prod from "./Prod"
 import { Context } from "../Context"
+import ProdView from "./ProdView"
 
 export default function Prods() {
 
@@ -10,7 +10,7 @@ export default function Prods() {
 		prodsUpdate()
 	}, [])
 
-	const prods_ = prods?.map(prod => <Prod key={prod._id} obj={prod} />)
+	const prods_ = prods?.map(prod => <ProdView key={prod._id} obj={prod} />)
 
 	return (
 		<>

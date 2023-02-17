@@ -11,12 +11,12 @@ export default function Add() {
 		JSON.parse(localStorage.getItem("addForm"))
 		||
 		{
-			title: "",
-			weight: "",
-			cats: "",
-			text: "",
-			imgUrl: "",
-			price: "",
+			title: `title ${Math.random()}`,
+			weight: `weight ${Math.random()}`,
+			cats: `cats ${Math.random()}`,
+			text: `text ${Math.random()}`,
+			imgUrl: `imgUrl ${Math.random()}`,
+			price: `${Math.random()}`,
 		}
 	)
 
@@ -69,7 +69,7 @@ export default function Add() {
 
 			getProdInfo()
 		}
-	}, [])
+	}, [updateId])
 	// ? UPDATE
 
 	// ! handleSubmit

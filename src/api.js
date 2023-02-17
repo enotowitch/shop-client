@@ -45,6 +45,11 @@ export const carted = async (_id, type = "one") => {
 	const { data } = await instance.patch("user/carted", { _id, type })
 	return data
 }
+
+export const viewed = async (_id) => {
+	const { data } = await instance.patch("user/viewed", { _id })
+	return data
+}
 // ? user
 
 // !! prod
@@ -93,6 +98,12 @@ export const updProd = async (_id, form) => {
 	return data
 }
 
+// ! recently
+export const recently = async () => {
+	const { data } = await instance.get(`recently`)
+	// console.log(data)
+	return data
+}
 // ?? prod
 
 // ! search

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import like from "../img/like.svg"
 import liked from "../img/liked.svg"
 import cart from "../img/cart.svg"
@@ -9,7 +9,7 @@ import SearchLink from "./links/SearchLink"
 import del from "../img/del.svg"
 import upd from "../img/upd.svg"
 import { currency } from "../consts"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 
 export default function ProdView(props) {
@@ -25,8 +25,16 @@ export default function ProdView(props) {
 
 	const [total, totalSet] = useState(thisTotal)
 
+	// ! isLiked, isCarted
 	const [isLiked, isLikedSet] = useState(user?.liked.includes(_id))
 	const [isCarted, isCartedSet] = useState(user?.carted.includes(_id))
+
+	// recheck liked, carted throughout all app
+	useEffect(() => {
+		isLikedSet(user?.liked.includes(_id))
+		isCartedSet(user?.carted.includes(_id))
+	}, [user])
+	// ? isLiked, isCarted
 
 	// ! ICONS
 	const likeIcon = () => {
@@ -92,7 +100,8 @@ export default function ProdView(props) {
 
 	const [counter, counterSet] = useState(quantity)
 
-	async function handleCounter(act) {
+	async function handleCounter(e, act) {
+		prevent(e)
 		if (act === "-") {
 			if (counter > 1) {
 				const res = await api.carted(_id, "many-")
@@ -116,39 +125,41 @@ export default function ProdView(props) {
 
 	// ! RETURN
 	return (
-		<div className={`prod prod_${mode}`}>
-			<div className="fsb mb">
-				{mode !== "cart" && likeIcon()}
-				{mode !== "cart" && updIcon()}
-				{mode !== "cart" && delIcon()}
-				{mode !== "cart" && cartIcon()}
+		<Link to={`/prod/${_id}`} >
+			<div className={`prod prod_${mode}`}>
+				<div className="fsb mb">
+					{mode !== "cart" && likeIcon()}
+					{mode !== "cart" && updIcon()}
+					{mode !== "cart" && delIcon()}
+					{mode !== "cart" && cartIcon()}
+				</div>
+				<img className="prod__photo" src={imgUrl} />
+
+				<div>
+					<div className="prod__title">{title}</div>
+
+					{props.children}
+
+					<div className="prod__price">{currency}{price}</div>
+				</div>
+
+				{mode !== "cart" && cats_}
+
+				{/* CART */}
+				{mode === "cart" &&
+					<>
+						<div className="prod__counter">
+							<span onClick={(e) => handleCounter(e, "-")}>-</span>
+							{counter}
+							<span onClick={(e) => handleCounter(e, "+")}>+</span>
+							<div>{currency}{total}</div>
+						</div>
+
+
+						<img src={del} onClick={(e) => cartProd(e, _id)} />
+					</>
+				}
 			</div>
-			<img className="prod__photo" src={imgUrl} />
-
-			<div>
-				<div className="prod__title">{title}</div>
-
-				{props.children}
-
-				<div className="prod__price">{currency}{price}</div>
-			</div>
-
-			{mode !== "cart" && cats_}
-
-			{/* CART */}
-			{mode === "cart" &&
-				<>
-					<div className="prod__counter">
-						<span onClick={() => handleCounter("-")}>-</span>
-						{counter}
-						<span onClick={() => handleCounter("+")}>+</span>
-						<div>{currency}{total}</div>
-					</div>
-
-
-					<img src={del} onClick={(e) => cartProd(e, _id)} />
-				</>
-			}
-		</div>
+		</Link>
 	)
 }

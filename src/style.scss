@@ -37,6 +37,10 @@ textarea{
 	margin-bottom: 15px;
 	resize: none;
 }
+
+a{
+	text-decoration: none;
+}
 // ? GLOBAL
 
 // ! LOGIN
@@ -114,6 +118,9 @@ img{
 			width: 100px;
 		}
 	}
+	&_new{
+		background: lighten($brand, 40%);
+	}
 	position: relative;
 	display: inline-block;
 	border: 2px solid $brand;
@@ -181,6 +188,15 @@ img{
 		flex-direction: column;
 		width: 50%;
 	}
+	&__num{
+		position: relative;
+		bottom: 13px;
+		right: 5px;
+		border: 2px solid $brand;
+		color: $brand;
+		border-radius: 50%;
+		padding: 0px 5px;
+	}
 }
 .total{
 	border: 2px solid $brand;
@@ -237,6 +253,13 @@ img{
 }
 // ? ADD
 
+// ! RECENTLY
+.recently{
+	display: flex;
+	overflow: auto;
+}
+// ? RECENTLY
+
 // ! OTHER
 .zi2{
 	z-index: 2;
@@ -277,6 +300,12 @@ img{
 .fsb{
 	display: flex;
 	justify-content: space-between;
+}
+.title{
+	color: $brand;
+	font-size: 22px;
+	font-weight: 700;
+	letter-spacing: 1px;
 }
 
 // ! Burger

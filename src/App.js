@@ -8,6 +8,7 @@ import Cart from "./components/Cart"
 import ProdFull from "./components/ProdFull"
 import Search from "./components/Search"
 import Like from "./components/Like"
+import Recently from "./components/Recently"
 
 
 export default function App() {
@@ -26,6 +27,9 @@ export default function App() {
 				<Route path="prod/:id" element={<ProdFull />} />
 				<Route path="search/:query" element={<Search />} />
 			</Routes>
+
+			<Recently type="added" />
+			<Recently type="viewed" />
 		</>
 	)
 }

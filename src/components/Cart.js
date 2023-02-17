@@ -33,8 +33,8 @@ export default function Cart() {
 
 			<div className="total p">
 				<div className="fsb mb">
-					<span>Total</span>
-					<span>{currency}{total}</span>
+					<span className="title">Total</span>
+					<span className="title">{currency}{total}</span>
 				</div>
 
 				<div>Order instructions</div>
