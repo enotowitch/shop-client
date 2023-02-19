@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import profile from "../img/profile.svg"
 import profiled from "../img/profiled.svg"
@@ -79,37 +79,48 @@ export default function Header() {
 	// search input value
 	const [value, valueSet] = useState("")
 
+	// compute !FIXED! header height for marginBottom
+	const [hh, hhSet] = useState()
+	useEffect(() => {
+		hhSet(document?.querySelector(".header")?.clientHeight + 30)
+	}, [])
+
 
 	// ! RETURN
 	return (
-		<div className="header zi9">
+		<>
+			<div className="header zi9">
 
-			<Burger onClick={toggleCats} />
+				<Burger onClick={toggleCats} />
 
-			{logoIcon()}
+				{logoIcon()}
 
-			<div className="header__wrap">
-				<input
-					type="text"
-					value={value}
-					onChange={(e) => valueSet(e.target.value)}
-				/>
-				{searchIcon()}
+				<div className="header__wrap">
+					<input
+						type="text"
+						value={value}
+						onChange={(e) => valueSet(e.target.value)}
+						placeholder="search"
+					/>
+					{searchIcon()}
+				</div>
+
+				<div className="header__wrap">
+
+					{profileIcon()}
+					{likeIcon()}
+					{cartIcon()}
+					{addIcon()}
+				</div>
+
+				{showCats &&
+					<div className="cats zi2">
+						{cats_}
+					</div>}
+
 			</div>
 
-			<div className="header__wrap">
-
-				{profileIcon()}
-				{likeIcon()}
-				{cartIcon()}
-				{addIcon()}
-			</div>
-
-			{showCats &&
-				<div className="cats zi2">
-					{cats_}
-				</div>}
-
-		</div>
+			<div style={{ marginBottom: hh }}></div>
+		</>
 	)
 }

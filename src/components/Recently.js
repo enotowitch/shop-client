@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import * as api from "../api"
 import ProdView from "./ProdView"
 import { Context } from "../Context"
+import { useLocation } from "react-router-dom"
 
 export default function Recently(props) {
 
@@ -11,7 +12,7 @@ export default function Recently(props) {
 	const [prod, prodSet] = useState() // recent prods
 
 	useEffect(() => {
-		if (type === "added") {
+		if (type === "new") {
 			async function recently() {
 				const res = await api.recently()
 				prodSet(res)
@@ -26,15 +27,28 @@ export default function Recently(props) {
 
 	}, [prods, user])
 
-	const title = type === "added" ? "New Products" : "Recently viewed"
-	const prod_ = prod?.map(prod => <ProdView key={prod._id} obj={prod} mode="new" />)
+	const title = type === "new" ? "New Products" : "Recently viewed"
+	const prod_ = prod?.map(prod => <ProdView key={prod?._id} obj={prod} mode={type} />)
 
+	// ! notShow
+	let { pathname } = useLocation()
+	pathname = pathname !== "/" && pathname?.match(/(?:)(\w+)/)[1]
+
+	const notShow = ["add", "profile", "upd"]
+	// ? notShow
+
+
+	// ! RETURN
 	return (
 		<>
-			<div className="title">{title}:</div>
-			<div className="recently">
-				{prod_}
-			</div>
+			{!notShow.includes(pathname) &&
+				<>
+					{prod_?.length > 0 && <div className="title">{title}:</div>}
+					<div className="prods recently">
+						{prod_}
+					</div>
+				</>
+			}
 		</>
 	)
 }

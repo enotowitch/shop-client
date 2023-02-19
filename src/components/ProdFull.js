@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import * as api from "../api"
 import ProdView from "./ProdView"
-import { weight } from "../consts"
+import { weight_ } from "../consts"
 import { Context } from "../Context"
 
 export default function ProdFull() {
@@ -31,9 +31,11 @@ export default function ProdFull() {
 
 	return (
 		prod &&
-		<ProdView obj={prod} mode="big">
-			<div>{prod.weight}{weight}</div>
-			<div>{prod.text}</div>
-		</ProdView>
+		<div className="prods">
+			<ProdView obj={prod} mode="big">
+				<div>{prod.weight}{weight_}</div>
+				<div>{prod.text}</div>
+			</ProdView>
+		</div>
 	)
 }

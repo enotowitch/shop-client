@@ -17,18 +17,18 @@ export default function App() {
 			<Header />
 
 			<Routes>
-				<Route path="/" element={<Prods />} />
-				<Route path="/profile" element={<Login />} />
-				<Route path="/add" element={<Add />} />
-				<Route path="/upd/:id" element={<Add />} />
-				<Route path="/cart" element={<Cart />} />
-				<Route path="/like" element={<Like />} />
+				<Route exact path="/" element={<Prods />} />
+				<Route exact path="/profile" element={<Login />} />
+				<Route exact path="/add" element={<Add />} />
+				<Route exact path="/upd/:id" element={<Add />} />
+				<Route exact path="/cart" element={<Cart />} />
+				<Route exact path="/like" element={<Like />} />
 
-				<Route path="prod/:id" element={<ProdFull />} />
-				<Route path="search/:query" element={<Search />} />
+				<Route exact path="prod/:id" element={<ProdFull />} />
+				<Route exact path="search/:query" element={<Search />} />
 			</Routes>
 
-			<Recently type="added" />
+			<Recently type="new" />
 			<Recently type="viewed" />
 		</>
 	)

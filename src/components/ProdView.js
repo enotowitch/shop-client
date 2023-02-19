@@ -8,7 +8,7 @@ import { Context } from "../Context"
 import SearchLink from "./links/SearchLink"
 import del from "../img/del.svg"
 import upd from "../img/upd.svg"
-import { currency } from "../consts"
+import { currency, weight_ } from "../consts"
 import { useNavigate, Link } from "react-router-dom"
 
 
@@ -20,10 +20,11 @@ export default function ProdView(props) {
 
 	const isAdmin = true // todo
 
-	const { title, cats, text, imgUrl, price, _id } = props.obj
-	const { mode, thisTotal } = props
+	const { title, cats, text, imgUrl, price, weight, _id } = props.obj
+	const { mode } = props
 
-	const [total, totalSet] = useState(thisTotal)
+	const [totalPrice, totalPriceSet] = useState(props.totalPrice)
+	const [totalWeight, totalWeightSet] = useState(props.totalWeight)
 
 	// ! isLiked, isCarted
 	const [isLiked, isLikedSet] = useState(user?.liked.includes(_id))
@@ -107,7 +108,8 @@ export default function ProdView(props) {
 				const res = await api.carted(_id, "many-")
 				if (res.success) {
 					counterSet(prev => prev > 1 ? prev - 1 : 1)
-					totalSet(prev => prev > price ? prev - price : price)
+					totalPriceSet(prev => prev > price ? prev - price : price)
+					totalWeightSet(prev => prev > weight ? prev - weight : weight)
 				}
 			}
 		}
@@ -115,7 +117,8 @@ export default function ProdView(props) {
 			const res = await api.carted(_id, "many+")
 			if (res.success) {
 				counterSet(prev => prev + 1)
-				totalSet(prev => prev + price)
+				totalPriceSet(prev => prev + price)
+				totalWeightSet(prev => prev + weight)
 			}
 		}
 		userUpdate()
@@ -127,15 +130,24 @@ export default function ProdView(props) {
 	return (
 		<Link to={`/prod/${_id}`} >
 			<div className={`prod prod_${mode}`}>
-				<div className="fsb mb">
-					{mode !== "cart" && likeIcon()}
-					{mode !== "cart" && updIcon()}
-					{mode !== "cart" && delIcon()}
-					{mode !== "cart" && cartIcon()}
-				</div>
+
+
+				{mode !== "cart" &&
+					<>
+						<span className="prod__status">{mode === "new" && mode}</span>
+						
+						<div className="prod__icons">
+							{likeIcon()}
+							{updIcon()}
+							{delIcon()}
+							{cartIcon()}
+						</div>
+					</>
+				}
+
 				<img className="prod__photo" src={imgUrl} />
 
-				<div>
+				<div className="prod__info">
 					<div className="prod__title">{title}</div>
 
 					{props.children}
@@ -143,7 +155,9 @@ export default function ProdView(props) {
 					<div className="prod__price">{currency}{price}</div>
 				</div>
 
-				{mode !== "cart" && cats_}
+				{mode !== "cart" &&
+					<div className="prod__cats">{cats_}</div>
+				}
 
 				{/* CART */}
 				{mode === "cart" &&
@@ -152,7 +166,8 @@ export default function ProdView(props) {
 							<span onClick={(e) => handleCounter(e, "-")}>-</span>
 							{counter}
 							<span onClick={(e) => handleCounter(e, "+")}>+</span>
-							<div>{currency}{total}</div>
+							<div>{totalWeight}{weight_}</div>
+							<div>{currency}{totalPrice}</div>
 						</div>
 
 

@@ -12,7 +12,7 @@ export default function Add() {
 		||
 		{
 			title: `title ${Math.random()}`,
-			weight: `weight ${Math.random()}`,
+			weight: `${Math.random()}`,
 			cats: `cats ${Math.random()}`,
 			text: `text ${Math.random()}`,
 			imgUrl: `imgUrl ${Math.random()}`,
@@ -89,9 +89,13 @@ export default function Add() {
 		}
 	}
 
+	const title = (!updateId ? "Add " : "Update ") + "Product"
+
 	// ! RETURN
 	return (
 		<form className="add__form" onSubmit={handleSubmit}>
+
+			<div className="title">{title}</div>
 
 			<input
 				type="text"
@@ -143,7 +147,7 @@ export default function Add() {
 				placeholder="price"
 			/>
 
-			<button className="brandBtn">{!updateId ? "add" : "update"} product</button>
+			<button className="brandBtn">{title}</button>
 
 			<button onClick={() => (localStorage.removeItem("test"), window.location.href = "/")}>test</button>
 

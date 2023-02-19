@@ -6,6 +6,8 @@ import ProdView from "./ProdView"
 export default function Search() {
 
 	const { query } = useParams()
+	const searchValue = query?.match(/(?:searchValue=)(.+?)(?:&)/)[1]
+	const field = query?.match(/(?:field=)(.+?)(?:&)/)[1]
 	const [searched, searchedSet] = useState()
 
 	useEffect(() => {
@@ -21,7 +23,11 @@ export default function Search() {
 
 	return (
 		<>
-			{prods_}
+			{searched?.length > 0 && <div className="title">{field === "text" && "Search: "}{searchValue}</div>}
+			{searched?.length === 0 && <div className="title danger">No results for search: {searchValue}</div>}
+			<div className="prods">
+				{prods_}
+			</div>
 		</>
 	)
 }
