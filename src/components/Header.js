@@ -12,6 +12,7 @@ import logo from "../img/logo.png"
 import { Context } from "../Context"
 import Burger from "./Burger"
 import SearchLink from "./links/SearchLink"
+import { useNavigate } from "react-router-dom"
 
 
 
@@ -85,6 +86,16 @@ export default function Header() {
 		hhSet(document?.querySelector(".header")?.clientHeight + 30)
 	}, [])
 
+	// ! redirect
+	const navigate = useNavigate()
+
+	function redirect(e) {
+		const href = e.target.closest("a").href.match(/(?:\/)(\w+)$/)[1]
+		const noUserNoGo = ["like", "cart", "add"]
+		noUserNoGo.includes(href) && !user && navigate("/profile")
+	}
+	// ? redirect
+
 
 	// ! RETURN
 	return (
@@ -105,7 +116,7 @@ export default function Header() {
 					{searchIcon()}
 				</div>
 
-				<div className="header__wrap">
+				<div className="header__wrap" onClick={redirect}>
 
 					{profileIcon()}
 					{likeIcon()}

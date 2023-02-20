@@ -1,98 +1,42 @@
-import React, { useContext, useEffect, useState } from "react"
-import like from "../img/like.svg"
-import liked from "../img/liked.svg"
-import cart from "../img/cart.svg"
-import carted from "../img/carted.svg"
+import React, { useContext, useState } from "react"
+
 import * as api from "../api"
 import { Context } from "../Context"
 import SearchLink from "./links/SearchLink"
-import del from "../img/del.svg"
-import upd from "../img/upd.svg"
 import { currency, weight_ } from "../consts"
 import { useNavigate, Link } from "react-router-dom"
+import CartIcon from "./icons/CartIcon"
+import Icon from "./icons/Icon"
 
 
 export default function ProdView(props) {
 
 	const navigate = useNavigate()
 
-	const { user, userUpdate, prodsUpdate } = useContext(Context)
+	const { user, userUpdate } = useContext(Context)
 
-	const isAdmin = true // todo
-
-	const { title, cats, text, imgUrl, price, weight, _id } = props.obj
+	const { title, cats, imgUrl, price, weight, _id } = props.obj
 	const { mode } = props
 
 	const [totalPrice, totalPriceSet] = useState(props.totalPrice)
 	const [totalWeight, totalWeightSet] = useState(props.totalWeight)
 
-	// ! isLiked, isCarted
-	const [isLiked, isLikedSet] = useState(user?.liked.includes(_id))
-	const [isCarted, isCartedSet] = useState(user?.carted.includes(_id))
 
-	// recheck liked, carted throughout all app
-	useEffect(() => {
-		isLikedSet(user?.liked.includes(_id))
-		isCartedSet(user?.carted.includes(_id))
-	}, [user])
-	// ? isLiked, isCarted
 
-	// ! ICONS
-	const likeIcon = () => {
-		return isLiked
-			? <img className="prod__icon" src={liked} onClick={(e) => likeProd(e, _id)} />
-			: <img className="prod__icon" src={like} onClick={(e) => likeProd(e, _id)} />
+	// !! FUNCTIONS
+	// todo HAS DUP
+	// ! redirect
+	function redirect(e) {
+		!user && navigate("/profile")
 	}
-
-	const cartIcon = () => {
-		return isCarted
-			? <img className="prod__icon" src={carted} onClick={(e) => cartProd(e, _id)} />
-			: <img className="prod__icon" src={cart} onClick={(e) => cartProd(e, _id)} />
-	}
-
-	const updIcon = () => {
-		return isAdmin
-			&& <img className="prod__icon" src={upd} onClick={(e) => updProd(e, _id)} />
-	}
-
-	const delIcon = () => {
-		return isAdmin
-			&& <img className="prod__icon" src={del} onClick={(e) => delProd(e, _id)} />
-	}
-	// ? ICONS
-
-	// ! FUNCTIONS
+	// todo HAS DUP
+	// ! prevent
 	function prevent(e) {
 		e.stopPropagation()
 		e.preventDefault()
+		redirect()
 	}
-
-	async function likeProd(e, _id) {
-		prevent(e)
-		isLikedSet(prev => !prev) // rerender icon
-		await api.liked(_id) // add/remove from db
-		userUpdate()
-	}
-
-	async function cartProd(e, _id) {
-		prevent(e)
-		isCartedSet(prev => !prev) // rerender icon
-		await api.carted(_id) // add/remove from db
-		userUpdate()
-	}
-
-	async function delProd(e, _id) {
-		prevent(e)
-		await api.delProd(_id)
-		prodsUpdate()
-	}
-
-	async function updProd(e, _id) {
-		// not act. upd just "go to upd page..."
-		prevent(e)
-		navigate(`/upd/${_id}`)
-	}
-	// ? FUNCTIONS
+	// ?? FUNCTIONS
 
 	const cats_ = cats?.split(",").map(cat => <SearchLink key={cat} searchValue={cat} field="cats"><span className="prod__cat">{cat}</span></SearchLink>)
 
@@ -135,12 +79,12 @@ export default function ProdView(props) {
 				{mode !== "cart" &&
 					<>
 						<span className="prod__status">{mode === "new" && mode}</span>
-						
+
 						<div className="prod__icons">
-							{likeIcon()}
-							{updIcon()}
-							{delIcon()}
-							{cartIcon()}
+							<Icon _id={_id} name="carted" />
+							<Icon _id={_id} name="liked" />
+							<Icon _id={_id} name="upd" />
+							<Icon _id={_id} name="del" />
 						</div>
 					</>
 				}
@@ -171,7 +115,7 @@ export default function ProdView(props) {
 						</div>
 
 
-						<img src={del} onClick={(e) => cartProd(e, _id)} />
+						<CartIcon _id={_id} src="del" />
 					</>
 				}
 			</div>

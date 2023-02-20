@@ -7,6 +7,7 @@ $brand: #ffac11;
 $danger: tomato;
 // ! width
 $widthSmall: 320px;
+$widthBig: 1200px;
 // ! border
 $borRadSmall: 12px;
 $borRadBig: 20px;
@@ -31,7 +32,7 @@ input, textarea {
 
 button{
 	width: 100%;
-	height: 30px;
+	height: 40px;
 	margin-top: 30px;
 	color: $white;
 	border: none;
@@ -238,13 +239,41 @@ input{
 }
 // ? PROD
 
+// ! PRODFULL
+.prodFull{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	border: 2px solid red;
+	max-width: $widthBig;
+	margin: 0 auto;
+	&__top{
+		display: flex;
+		justify-content: space-between;
+		padding: 15px;
+		width: 100%;
+	}
+	// !!!
+	* div {
+	max-width: 400px;
+	border: 2px solid red;
+	}
+	// !!!
+	* img {
+		max-width: 400px;
+		object-fit: contain;
+		border: 2px solid red;
+	}
+}
+// ? PRODFULL
+
 // ! CART
 .cart{
 	&__wrap{
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
-		max-width: 1200px;
+		max-width: $widthBig;
 		margin: 0 auto;
 		margin-bottom: 30px;
 	}
@@ -339,65 +368,6 @@ input{
 	overflow: scroll;
 }
 // ? RECENTLY
-
-// ! OTHER
-.zi2{
-	z-index: 2;
-}
-.zi3{
-	z-index: 3;
-}
-.zi9{
-	z-index: 9;
-}
-.m0a{
-	margin: 0 auto;
-}
-.mt{
-	margin-top: 15px;
-}
-.mt2{
-	margin-top: 30px;
-}
-.mb{
-	margin-bottom: 15px;
-}
-.mb2{
-	margin-bottom: 30px;
-}
-.mlr{
-	margin: 0 15px 0 15px;
-}
-.m{
-	margin: 15px;
-}
-.p{
-	padding: 15px;
-}
-.tac{
-	text-align: center;
-}
-.f{
-	display: flex;
-}
-.fsb{
-	display: flex;
-	justify-content: space-between;
-}
-.title{
-	font-family: $fontSecondary;
-	color: $brand;
-	font-size: 22px;
-	font-weight: 700;
-	letter-spacing: 1px;
-	text-align: center;
-	width: 100%;
-}
-.danger{
-	color: $danger;
-}
-// ? OTHER
-
 // ! Burger
 #menu__toggle {
 	opacity: 0;
@@ -461,3 +431,64 @@ input{
 	border-radius: 20px;
 }
 // ? scrollbar
+
+// ! OTHER
+.zi2{
+	z-index: 2;
+}
+.zi3{
+	z-index: 3;
+}
+.zi9{
+	z-index: 9;
+}
+.m0a{
+	margin: 0 auto;
+}
+.mt{
+	margin-top: 15px;
+}
+.mt2{
+	margin-top: 30px;
+}
+.mb{
+	margin-bottom: 15px;
+}
+.mb2{
+	margin-bottom: 30px;
+}
+.mlr{
+	margin: 0 15px 0 15px;
+}
+.m{
+	margin: 15px;
+}
+.p{
+	padding: 15px;
+}
+.tac{
+	text-align: center;
+}
+.f{
+	display: flex;
+}
+.fsb{
+	display: flex;
+	justify-content: space-between;
+}
+.title{
+	font-family: $fontSecondary;
+	color: $brand;
+	font-size: 22px;
+	font-weight: 700;
+	letter-spacing: 1px;
+	text-align: center;
+	width: 100%;
+}
+.danger{
+	color: $danger;
+}
+.br{
+	border: 2px solid red;
+}
+// ? OTHER

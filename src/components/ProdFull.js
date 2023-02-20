@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import * as api from "../api"
-import ProdView from "./ProdView"
-import { weight_ } from "../consts"
+import { currency, weight_ } from "../consts"
 import { Context } from "../Context"
+import Icon from "./icons/Icon"
 
 export default function ProdFull() {
 
@@ -31,11 +31,25 @@ export default function ProdFull() {
 
 	return (
 		prod &&
-		<div className="prods">
-			<ProdView obj={prod} mode="big">
-				<div>{prod.weight}{weight_}</div>
+		<div className="prodFull">
+
+			<div>
+				<div className="prodFull__top">
+					<Icon _id={prod._id} name="carted" />
+					<Icon _id={prod._id} name="liked" />
+					<Icon _id={prod._id} name="upd" />
+					<Icon _id={prod._id} name="del" />
+				</div>
+				<img src={prod.imgUrl} />
+			</div>
+
+			<div>
+				<div className="title">{prod.title}</div>
+				<div className="tac">{currency}{prod.price}/{prod.weight}{weight_}</div>
+				<button className="brandBtn mb2">add to cart</button>
 				<div>{prod.text}</div>
-			</ProdView>
+			</div>
+
 		</div>
 	)
 }
