@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react"
 import * as api from "../api"
 import { useNavigate, useParams } from "react-router-dom"
 import imgDummy from "../img/img.svg"
+import Input from "./Input"
 
 export default function Add() {
 
@@ -11,12 +12,25 @@ export default function Add() {
 		JSON.parse(localStorage.getItem("addForm"))
 		||
 		{
-			title: `title ${Math.random()}`,
-			weight: `${Math.random()}`,
-			cats: `cats ${Math.random()}`,
-			text: `text ${Math.random()}`,
-			imgUrl: `imgUrl ${Math.random()}`,
-			price: `${Math.random()}`,
+			// ! MAIN
+			title: ``,
+			weight: ``,
+			cats: ``,
+			text: ``,
+			imgUrl: ``,
+			price: ``,
+			// ! SECONDARY
+			compound: ``,
+			calories: ``,
+			proteins: ``,
+			fats: ``,
+			carbohydrates: ``,
+			expiration: ``,
+			temperature: ``,
+			// ! OTHER
+			delivery: `${JSON.parse(localStorage.getItem("delivery"))}`,
+			payment: `${JSON.parse(localStorage.getItem("payment"))}`,
+			warranty: `${JSON.parse(localStorage.getItem("warranty"))}`,
 		}
 	)
 
@@ -35,11 +49,16 @@ export default function Add() {
 	}, [])
 	// ? TODO - TEST REMOVE LATER
 
-	// !handleChange
+	// ! handleChange
 	function handleChange(e) {
 		formSet(prev => ({ ...prev, [e.target.name]: e.target.value }))
 		localStorage.setItem("addForm", JSON.stringify(form))
+		// save "OTHER" section as it's almost always the same
+		localStorage.setItem("delivery", JSON.stringify(form.delivery))
+		localStorage.setItem("payment", JSON.stringify(form.payment))
+		localStorage.setItem("warranty", JSON.stringify(form.warranty))
 	}
+	// ? handleChange
 
 
 	// ! handleChangeFile
@@ -91,66 +110,61 @@ export default function Add() {
 
 	const title = (!updateId ? "Add " : "Update ") + "Product"
 
+
 	// ! RETURN
 	return (
 		<form className="add__form" onSubmit={handleSubmit}>
 
-			<div className="title">{title}</div>
+			{/* // !! SECONDARY INFO */}
+			<div>
+				<Input type="textarea" name="compound" value={form.compound} onChange={handleChange} placeholder="compound" />
+				<Input name="calories" value={form.calories} onChange={handleChange} placeholder="calories" />
+				<Input name="proteins" value={form.proteins} onChange={handleChange} placeholder="proteins" />
+				<Input name="fats" value={form.fats} onChange={handleChange} placeholder="fats" />
+				<Input name="carbohydrates" value={form.carbohydrates} onChange={handleChange} placeholder="carbohydrates" />
+				<Input name="expiration" value={form.expiration} onChange={handleChange} placeholder="expiration" />
+				<Input name="temperature" value={form.temperature} onChange={handleChange} placeholder="temperature" />
+			</div>
+			{/* // ?? SECONDARY INFO */}
 
-			<input
-				type="text"
-				name="title"
-				value={form.title}
-				onChange={handleChange}
-				placeholder="title"
-			/>
+			{/* // !! MAIN INFO */}
+			<div>
+				<div className="title">{title}</div>
 
-			<input
-				type="text"
-				name="weight"
-				value={form.weight}
-				onChange={handleChange}
-				placeholder="weight"
-			/>
+				<Input name="title" value={form.title} onChange={handleChange} placeholder="title" />
+				<Input name="weight" value={form.weight} onChange={handleChange} placeholder="weight" />
+				<Input name="cats" value={form.cats} onChange={handleChange} placeholder="cats" />
 
-			<input
-				type="text"
-				name="cats"
-				value={form.cats}
-				onChange={handleChange}
-				placeholder="cats"
-			/>
+				<Input type="textarea" name="text" value={form.text} onChange={handleChange} placeholder="text" />
 
-			<textarea
-				type="textarea"
-				name="text"
-				value={form.text}
-				onChange={handleChange}
-				placeholder="text"
-			/>
+				{/* // ! FILE */}
+				<input
+					hidden
+					ref={fileRef}
+					type="file"
+					name="imgUrl"
+					onChange={handleChangeFile}
+				/>
 
-			<input
-				hidden
-				ref={fileRef}
-				type="file"
-				name="imgUrl"
-				onChange={handleChangeFile}
-			/>
+				<img src={imgLoaded || imgDummy} onClick={() => fileRef.current.click()} />
+				{/* // ? FILE */}
 
-			<img src={imgLoaded || imgDummy} onClick={() => fileRef.current.click()} />
+				<Input name="price" value={form.price} onChange={handleChange} placeholder="price" />
 
-			<input
-				type="text"
-				name="price"
-				value={form.price}
-				onChange={handleChange}
-				placeholder="price"
-			/>
+				<button className="brandBtn">{title}</button>
 
-			<button className="brandBtn">{title}</button>
+				{/* // todo DELETE LATER */}
+				<button onClick={() => (localStorage.removeItem("test"), window.location.href = "/")}>test</button>
+			</div>
+			{/* // ?? MAIN INFO */}
 
-			<button onClick={() => (localStorage.removeItem("test"), window.location.href = "/")}>test</button>
-
+			{/* // !! OTHER */}
+			<div>
+				<Input type="textarea" name="delivery" value={form.delivery} onChange={handleChange} placeholder="delivery" />
+				<Input type="textarea" name="payment" value={form.payment} onChange={handleChange} placeholder="payment" />
+				<Input type="textarea" name="warranty" value={form.warranty} onChange={handleChange} placeholder="warranty" />
+			</div>
+			{/* // ?? OTHER */}
 		</form>
 	)
 }
