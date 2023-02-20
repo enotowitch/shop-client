@@ -10,10 +10,17 @@ export default function Icon({ _id, name }) {
 	let img, img2
 	try {
 		img = require(`../../img/${name}.svg`)
-		// * TO WORK OK: all images must have names: e.q "lik" & "liked", "cart" & "carted" 
+		// * TO WORK OK: all images must have names: e.g "lik" & "liked", "cart" & "carted" 
 		img2 = require(`../../img/${name.replace("ed", "")}.svg`)
-	} catch (err) { console.log(err) }
+	} catch (err) {
+		console.log(err)
+		img2 = require(`../../img/${name}.svg`) // for imgs which have one "state"
+	}
 	// ? img
+
+	// *** after img is done: replace digit from name, so db & function could work OK
+	// *** USE CASE: same functional, but other img. e.g: img name = "carted2", db & function name = "carted"
+	name = name.replace(/\d+/, "")
 
 	const { user, userUpdate, prodsUpdate } = useContext(Context)
 	const navigate = useNavigate()

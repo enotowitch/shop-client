@@ -5,8 +5,8 @@ import { Context } from "../Context"
 import SearchLink from "./links/SearchLink"
 import { currency, weight_ } from "../consts"
 import { useNavigate, Link } from "react-router-dom"
-import CartIcon from "./icons/CartIcon"
 import Icon from "./icons/Icon"
+import Icons from "./icons/Icons"
 
 
 export default function ProdView(props) {
@@ -81,10 +81,7 @@ export default function ProdView(props) {
 						<span className="prod__status">{mode === "new" && mode}</span>
 
 						<div className="prod__icons">
-							<Icon _id={_id} name="carted" />
-							<Icon _id={_id} name="liked" />
-							<Icon _id={_id} name="upd" />
-							<Icon _id={_id} name="del" />
+							<Icons _id={_id} />
 						</div>
 					</>
 				}
@@ -115,7 +112,7 @@ export default function ProdView(props) {
 						</div>
 
 
-						<CartIcon _id={_id} src="del" />
+						<Icon _id={_id} name="carted2" />
 					</>
 				}
 			</div>

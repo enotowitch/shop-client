@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import * as api from "../api"
 import { currency, weight_ } from "../consts"
 import { Context } from "../Context"
-import Icon from "./icons/Icon"
+import Icons from "./icons/Icons"
 
 export default function ProdFull() {
 
@@ -35,10 +35,7 @@ export default function ProdFull() {
 
 			<div>
 				<div className="prodFull__top">
-					<Icon _id={prod._id} name="carted" />
-					<Icon _id={prod._id} name="liked" />
-					<Icon _id={prod._id} name="upd" />
-					<Icon _id={prod._id} name="del" />
+					<Icons _id={prod._id} />
 				</div>
 				<img src={prod.imgUrl} />
 			</div>
