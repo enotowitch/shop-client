@@ -16,7 +16,7 @@ export default function ProdView(props) {
 	const { user, userUpdate } = useContext(Context)
 
 	const { title, cats, imgUrl, price, weight, _id } = props.obj
-	const { mode } = props
+	const { mode, addInfo } = props
 
 	const [totalPrice, totalPriceSet] = useState(props.totalPrice)
 	const [totalWeight, totalWeightSet] = useState(props.totalWeight)
@@ -78,7 +78,7 @@ export default function ProdView(props) {
 
 				{mode !== "cart" &&
 					<>
-						<span className="prod__status">{mode === "new" && mode}</span>
+						<span className="prod__status">{addInfo && (`${addInfo}: ` + props.obj[addInfo]) || mode}</span>
 
 						<div className="prod__icons">
 							<Icons _id={_id} />

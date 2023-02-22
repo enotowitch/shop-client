@@ -1,12 +1,16 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import { Context } from "../Context"
 import ProdView from "./ProdView"
 import { weight_, currency } from "../consts"
 
 export default function Cart() {
 
-	const { prods, user } = useContext(Context)
+	const { prods, user, userUpdate } = useContext(Context)
 	const userCarted = prods?.filter(prod => user?.carted.includes(prod._id))
+
+	useEffect(() => {
+		userUpdate()
+	}, [])
 
 	let total = 0
 
@@ -25,32 +29,36 @@ export default function Cart() {
 
 	// ! RETURN
 	return (
-		<div className="cart__wrap">
+		<>
+			<div className="title pt">Cart:</div>
 
-			<div className="cart__prods">
-				{userCart}
-			</div>
+			<div className="cart__wrap">
 
-			{userCarted?.length > 0
-				?
-				<div className="total p">
-					<div className="fsb mb">
-						<span className="title">Total</span>
-						<span className="title">{currency}{total}</span>
-					</div>
-
-					<div>Order instructions</div>
-					<textarea
-						type="textarea"
-					/>
-
-					<div>Please check the details of your order carefully, by continuing you acknowledge that your order cannot be changed once submitted.</div>
-
-					<button className="brandBtn">Checkout</button>
+				<div className="cart__prods">
+					{userCart}
 				</div>
-				:
-				<div className="title danger mb2">Your cart is empty</div>
-			}
-		</div>
+
+				{userCarted?.length > 0
+					?
+					<div className="total p">
+						<div className="fsb mb">
+							<span className="title m0">Total</span>
+							<span className="title m0">{currency}{total}</span>
+						</div>
+
+						<div>Order instructions</div>
+						<textarea
+							type="textarea"
+						/>
+
+						<div>Please check the details of your order carefully, by continuing you acknowledge that your order cannot be changed once submitted.</div>
+
+						<button className="brandBtn">Checkout</button>
+					</div>
+					:
+					<div className="title danger w100">Your cart is empty</div>
+				}
+			</div>
+		</>
 	)
 }

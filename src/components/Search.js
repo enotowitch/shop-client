@@ -23,8 +23,8 @@ export default function Search() {
 
 	return (
 		<>
-			{searched?.length > 0 && <div className="title">{field === "text" && "Search: "}{searchValue}</div>}
-			{searched?.length === 0 && <div className="title danger">No results for search: {searchValue}</div>}
+			{searched?.length > 0 && <div className="title pt">{field === "text" && "Search: "}{searchValue}</div>}
+			{searched?.length === 0 && <div className="title pt danger">No results for search: {searchValue}</div>}
 			<div className="prods">
 				{prods_}
 			</div>

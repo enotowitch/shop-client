@@ -10,7 +10,6 @@ import Search from "./components/Search"
 import Like from "./components/Like"
 import Recently from "./components/Recently"
 
-
 export default function App() {
 	return (
 		<>

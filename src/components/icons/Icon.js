@@ -45,18 +45,42 @@ export default function Icon({ _id, name }) {
 		e.preventDefault()
 		redirect()
 	}
+	// ! delAnim
+	function delAnim(e, callback) {
+		prevent(e)
+		e.target.closest(".prod").classList.add("delAnim")
+
+		setTimeout(() => {
+			callback()
+
+			e.target.closest(".prod").remove() // * for `Prods.js` where prods come NOT from `Context`, but from `api.filter`
+		}, 500);
+	}
+	// ? delAnim
 	// ! cartProd
 	async function carted(e, _id) {
-		prevent(e)
-		iconStateSet(prev => !prev) // rerender icon
-		await api.carted(_id) // add/remove from db
-		userUpdate()
+		if (e.target.closest(".prod_cart")) {
+			// prod is in cart ? => use delAnim
+			delAnim(e, async () => {
+				iconStateSet(prev => !prev) // rerender icon
+				await api.carted(_id) // add/remove from db
+				userUpdate()
+			})
+		} else {
+			// prod is NOT in cart ? => NOT use delAnim
+			prevent(e)
+			iconStateSet(prev => !prev) // rerender icon
+			await api.carted(_id) // add/remove from db
+			userUpdate()
+		}
 	}
+	// ? cartProd
 	// ! delProd
 	async function del(e, _id) {
-		prevent(e)
-		await api.delProd(_id)
-		prodsUpdate()
+		delAnim(e, async () => {
+			await api.delProd(_id)
+			prodsUpdate()
+		})
 	}
 	// ! likeProd
 	async function liked(e, _id) {

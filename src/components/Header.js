@@ -34,14 +34,14 @@ export default function Header() {
 
 	const profileIcon = () => (
 		user
-			? <Link to="/profile"><img className="header__icon" src={profiled} /></Link>
-			: <Link to="/profile"><img className="header__icon" src={profile} /></Link>
+			? <Link to="/profile"><span className="brand">PROFILE</span></Link>
+			: <Link to="/profile"><span>PROFILE</span></Link>
 	)
 
 	const likeIcon = () => (
 		user?.liked?.length > 0
-			? <Link to="/like"><img className="header__icon" src={liked} /></Link>
-			: <Link to="/like"><img className="header__icon" src={like} /></Link>
+			? <Link to="/like"><span className="brand">LIKED ({user?.liked?.length})</span></Link>
+			: <Link to="/like"><span>LIKED</span></Link>
 	)
 
 	const cartIcon = () => {
@@ -50,15 +50,14 @@ export default function Header() {
 
 		return user?.carted?.length > 0
 			? <Link to="/cart">
-				<img className="header__icon" src={carted} />
-				<span className="cart__num">{uniqId?.length}</span>
+				<span className="brand">CART ({uniqId?.length})</span>
 			</Link>
-			: <Link to="/cart"><img className="header__icon" src={cart} /></Link>
+			: <Link to="/cart"><span>CART</span></Link>
 	}
 
 	const addIcon = () => (
 		isAdmin
-		&& <Link to="/add"><img className="header__icon" src={add} /></Link>
+		&& <Link to="/add"><span className="brand">ADD</span></Link>
 	)
 
 	// ! cats
@@ -116,7 +115,7 @@ export default function Header() {
 					{searchIcon()}
 				</div>
 
-				<div className="header__wrap" onClick={redirect}>
+				<div className="header__wrap header__nav" onClick={redirect}>
 
 					{profileIcon()}
 					{likeIcon()}

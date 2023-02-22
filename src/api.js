@@ -112,3 +112,11 @@ export const search = async (query) => {
 	return data
 }
 // ? search
+
+// ! filter
+export const filter = async (query) => {
+	// types: asc, desc
+	const { data } = await instance.get(`filter/${query}`)
+	return data
+}
+// ? filter

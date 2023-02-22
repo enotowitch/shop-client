@@ -28,9 +28,9 @@ export default function Add() {
 			expiration: ``,
 			temperature: ``,
 			// ! OTHER
-			delivery: `${JSON.parse(localStorage.getItem("delivery"))}`,
-			payment: `${JSON.parse(localStorage.getItem("payment"))}`,
-			warranty: `${JSON.parse(localStorage.getItem("warranty"))}`,
+			delivery: ``, // ${JSON.parse(localStorage.getItem("delivery"))}
+			payment: ``, // ${JSON.parse(localStorage.getItem("payment"))}
+			warranty: ``, // ${JSON.parse(localStorage.getItem("warranty"))}
 		}
 	)
 
@@ -104,7 +104,7 @@ export default function Add() {
 
 		if (res) {
 			localStorage.removeItem("addForm")
-			navigate("/")
+			navigate(`/prod/${res._id}`)
 		}
 	}
 

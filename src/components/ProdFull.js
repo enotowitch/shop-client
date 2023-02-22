@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import * as api from "../api"
 import { currency, weight_ } from "../consts"
 import { Context } from "../Context"
@@ -9,9 +9,10 @@ import ProdMenu from "./ProdMenu"
 
 export default function ProdFull() {
 
-	const { userUpdate } = useContext(Context)
+	const { userUpdate, prodsUpdate } = useContext(Context)
 
 	const { id } = useParams()
+	const navigate = useNavigate()
 
 	const [prod, prodSet] = useState()
 
@@ -29,8 +30,16 @@ export default function ProdFull() {
 
 		getProd()
 		viewed()
+		prodsUpdate()
 	}, [id])
 
+	async function buy() {
+		const res = await api.carted(id, "many+")
+		res && navigate("/cart")
+	}
+
+
+	// ! RETURN
 	return (
 		prod &&
 		<div className="prodFull">
@@ -63,7 +72,7 @@ export default function ProdFull() {
 			<div className="prodFull__info">
 				<div className="title">{prod.title}</div>
 				<div className="tac">{currency}{prod.price}/{prod.weight}{weight_}</div>
-				<button className="brandBtn mb2">add to cart</button>
+				<button className="brandBtn mb2" onClick={buy}>Buy</button>
 				<div>{prod.text}</div>
 			</div>
 

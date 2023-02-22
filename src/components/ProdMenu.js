@@ -11,8 +11,8 @@ export default function ProdMenu(props) {
 		<div>
 
 			<div className="fse">
-				<div id="0" onClick={onToggle}>Characteristics</div>
-				<div id="1" onClick={onToggle}>Delivery & Payment</div>
+				<div className="brand p" id="0" onClick={onToggle}>Characteristics</div>
+				<div className="brand p" id="1" onClick={onToggle}>Delivery & Payment</div>
 			</div>
 
 			{on[0] && <div>{props.children[0]}</div>}
