@@ -8,6 +8,8 @@ $danger: tomato;
 // ! width
 $widthSmall: 320px;
 $widthBig: 1200px;
+// ! margins
+$prodMargin: 10px;
 // ! border
 $borRadSmall: 12px;
 $borRadBig: 20px;
@@ -87,7 +89,7 @@ select {
 	background: $white;
 	border-radius: $borRadSmall;
 	margin: 0 auto;
-	box-shadow: $boxShadow;
+	// box-shadow: $boxShadow;
 
 	&__title{
 		text-align: center;
@@ -127,12 +129,13 @@ input{
 // ? LOGIN
 
 // ! PROD
+$prodNum: 4;
 .prods{
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
-	width: 80%;
+	max-width: $widthSmall * $prodNum + ($prodMargin * $prodNum * 2 + $prodMargin); // change $prodNum to fit `num prods` in a row
 	margin: 0 auto;
+	justify-content: center;
 }
 .prod{
 	position: relative;
@@ -142,9 +145,9 @@ input{
 	width: $widthSmall; // todo
 	border-radius: $borRadSmall;
 	padding: 15px;
-	margin: 10px;
+	margin: $prodMargin;
 	box-shadow: $boxShadow;
-	background: lighten($brand, 44%);
+	// background: lighten($brand, 44%);
 	&_small{
 		width: calc($widthSmall / 2);
 	}
@@ -169,7 +172,8 @@ input{
 		}
 	}
 	&_viewed{
-		background: lighten($brand, 35%);
+		// background: lighten($brand, 35%);
+		border: 2px solid $brand;
 	}
 	&__status{
 		color: $brand;

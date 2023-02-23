@@ -69,16 +69,21 @@ export default function ProdView(props) {
 	}
 	// ? COUNTER
 
+	// ! additionalInfo
+	const notShow = ["createdAt", "title", "price"]
+	const additionalInfo = addInfo && !notShow.includes(addInfo) && (`${addInfo}: ` + props.obj[addInfo])
+
 
 	// ! RETURN
 	return (
 		<Link to={`/prod/${_id}`} >
+			{/* // * modes: cart, viewed, new */}
 			<div className={`prod prod_${mode}`}>
 
 
 				{mode !== "cart" &&
 					<>
-						<span className="prod__status">{addInfo && (`${addInfo}: ` + props.obj[addInfo]) || mode}</span>
+						<span className="prod__status">{additionalInfo || mode || "check it out!"}</span>
 
 						<div className="prod__icons">
 							<Icons _id={_id} />

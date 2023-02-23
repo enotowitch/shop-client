@@ -74,8 +74,21 @@ export default function Login() {
 					</>
 
 					:
+					
+					<>
+						<span className="title">Email:</span>
+						<div>{user.email}</div>
+						<span className="title">Member Since:</span>
+						<div>{user.createdAt.match(/\d+-\d+-\d+/)[0]} / {user.createdAt.match(/(?:T)(\d+:\d+:\d+)/)[1]}</div>
+						<span className="title">Carted:</span>
+						<div>{user.carted.length}</div>
+						<span className="title">Liked:</span>
+						<div>{user.liked.length}</div>
+						<span className="title">Viewed:</span>
+						<div>{user.viewed.length}</div>
 
-					<button className="logoutBtn" onClick={logout}>LOG OUT</button>
+						<button className="logoutBtn" onClick={logout}>LOG OUT</button>
+					</>
 				}
 
 

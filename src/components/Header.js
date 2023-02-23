@@ -63,6 +63,11 @@ export default function Header() {
 	// ! cats
 	const [showCats, showCatsSet] = useState(true)
 
+	useEffect(() => {
+		// show cats for DESKTOP, else user has to click BURGER to see cats
+		window.innerWidth > 500 ? showCatsSet(true) : showCatsSet(false)
+	}, [])
+
 	function toggleCats() {
 		showCatsSet(prev => !prev)
 	}

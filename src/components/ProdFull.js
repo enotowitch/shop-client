@@ -24,13 +24,14 @@ export default function ProdFull() {
 
 		async function viewed() {
 			const res = await api.viewed(id)
-			console.log(res)
+			// console.log(res)
 			userUpdate()
 		}
 
 		getProd()
 		viewed()
 		prodsUpdate()
+		window.scrollTo(0, 0)
 	}, [id])
 
 	async function buy() {
@@ -41,41 +42,45 @@ export default function ProdFull() {
 
 	// ! RETURN
 	return (
-		prod &&
-		<div className="prodFull">
+		prod ?
+			<div className="prodFull">
 
-			<div>
-				<div className="prodFull__top">
-					<Icons _id={prod._id} />
+				<div>
+					<div className="prodFull__top">
+						<Icons _id={prod._id} />
+					</div>
+					<img className="prodFull__photo" src={prod.imgUrl} />
+
+					<ProdMenu>
+						<>
+							<FAQ title="compound" text={prod.compound} />
+							<FAQ title="calories" text={prod.calories} />
+							<FAQ title="proteins" text={prod.proteins} />
+							<FAQ title="fats" text={prod.fats} />
+							<FAQ title="carbohydrates" text={prod.carbohydrates} />
+							<FAQ title="expiration" text={prod.expiration} />
+							<FAQ title="temperature" text={prod.temperature} />
+						</>
+
+						<>
+							<FAQ title="delivery" text={prod.delivery} />
+							<FAQ title="warranty" text={prod.warranty} />
+							<FAQ title="payment" text={prod.payment} />
+						</>
+					</ProdMenu>
 				</div>
-				<img className="prodFull__photo" src={prod.imgUrl} />
 
-				<ProdMenu>
-					<>
-						<FAQ title="compound" text={prod.compound} />
-						<FAQ title="calories" text={prod.calories} />
-						<FAQ title="proteins" text={prod.proteins} />
-						<FAQ title="fats" text={prod.fats} />
-						<FAQ title="carbohydrates" text={prod.carbohydrates} />
-						<FAQ title="expiration" text={prod.expiration} />
-						<FAQ title="temperature" text={prod.temperature} />
-					</>
+				<div className="prodFull__info">
+					<div className="title">{prod.title}</div>
+					<div className="tac">{currency}{prod.price}/{prod.weight}{weight_}</div>
+					<button className="brandBtn mb2" onClick={buy}>Buy</button>
+					<div>{prod.text}</div>
+				</div>
 
-					<>
-						<FAQ title="delivery" text={prod.delivery} />
-						<FAQ title="warranty" text={prod.warranty} />
-						<FAQ title="payment" text={prod.payment} />
-					</>
-				</ProdMenu>
 			</div>
 
-			<div className="prodFull__info">
-				<div className="title">{prod.title}</div>
-				<div className="tac">{currency}{prod.price}/{prod.weight}{weight_}</div>
-				<button className="brandBtn mb2" onClick={buy}>Buy</button>
-				<div>{prod.text}</div>
-			</div>
+			:
 
-		</div>
+			<div hidden className="title danger pt">Product not found</div>
 	)
 }

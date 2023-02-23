@@ -13,20 +13,20 @@ export default function Add() {
 		||
 		{
 			// ! MAIN
-			title: ``,
-			weight: ``,
-			cats: ``,
-			text: ``,
+			title: `${Math.random()}`,
+			weight: `${Math.random()}`,
+			cats: `${Math.random()}`,
+			text: `${Math.random()}`,
 			imgUrl: ``,
-			price: ``,
+			price: `${Math.random()}`,
 			// ! SECONDARY
-			compound: ``,
-			calories: ``,
-			proteins: ``,
-			fats: ``,
-			carbohydrates: ``,
-			expiration: ``,
-			temperature: ``,
+			compound: `${Math.random()}`,
+			calories: `${Math.random()}`,
+			proteins: `${Math.random()}`,
+			fats: `${Math.random()}`,
+			carbohydrates: `${Math.random()}`,
+			expiration: `${Math.random()}`,
+			temperature: `${Math.random()}`,
 			// ! OTHER
 			delivery: ``, // ${JSON.parse(localStorage.getItem("delivery"))}
 			payment: ``, // ${JSON.parse(localStorage.getItem("payment"))}

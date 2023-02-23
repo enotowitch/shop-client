@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import * as api from "../api"
 import { useParams } from "react-router-dom"
-import ProdView from "./ProdView"
+import useViewed from "../hooks/useViewed"
 
 export default function Search() {
 
@@ -17,9 +17,10 @@ export default function Search() {
 		}
 
 		search()
+		window.scrollTo(0, 0)
 	}, [query])
 
-	const prods_ = searched?.map(prod => <ProdView key={prod._id} obj={prod} />)
+	const prods_ = useViewed(searched)
 
 	return (
 		<>

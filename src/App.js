@@ -27,8 +27,8 @@ export default function App() {
 				<Route exact path="search/:query" element={<Search />} />
 			</Routes>
 
-			<Recently type="new" />
 			<Recently type="viewed" />
+			<Recently type="new" />
 		</>
 	)
 }
