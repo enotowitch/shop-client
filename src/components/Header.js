@@ -1,18 +1,12 @@
 import React, { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import profile from "../img/profile.svg"
-import profiled from "../img/profiled.svg"
-import like from "../img/like_black.svg"
-import liked from "../img/liked_black.svg"
-import cart from "../img/cart.svg"
-import carted from "../img/carted.svg"
-import add from "../img/add.svg"
 import search from "../img/search.svg"
 import logo from "../img/logo.png"
 import { Context } from "../Context"
 import Burger from "./Burger"
 import SearchLink from "./links/SearchLink"
 import { useNavigate } from "react-router-dom"
+import { mobileWidth } from "../consts"
 
 
 
@@ -20,7 +14,7 @@ export default function Header() {
 
 	const { user, prods } = useContext(Context)
 
-	const isAdmin = true // todo
+	const isAdmin = user?.email?.match(/admin/i)?.[0] // TODO
 
 	const searchIcon = () => (
 		<SearchLink searchValue={value} field="text"><img className="header__icon" src={search} /></SearchLink>
@@ -60,12 +54,12 @@ export default function Header() {
 		&& <Link to="/add"><span className="brand">ADD</span></Link>
 	)
 
-	// ! cats
+	// !! cats
 	const [showCats, showCatsSet] = useState(true)
 
 	useEffect(() => {
 		// show cats for DESKTOP, else user has to click BURGER to see cats
-		window.innerWidth > 500 ? showCatsSet(true) : showCatsSet(false)
+		window.innerWidth > mobileWidth ? showCatsSet(true) : showCatsSet(false)
 	}, [])
 
 	function toggleCats() {
@@ -78,8 +72,13 @@ export default function Header() {
 		prod.cats.split(", ").map(cat => !cats.includes(cat) && cats.push(cat))
 	})
 
-	const cats_ = cats.map(cat => <SearchLink key={cat} searchValue={cat} field="cats"><span>{cat}</span></SearchLink>)
-	// ? cats
+	// for MOBILE
+	function closeMenu() {
+		document?.querySelector(".menu__btn")?.click()
+	}
+
+	const cats_ = cats.map(cat => <SearchLink key={cat} searchValue={cat} field="cats"><span onClick={closeMenu}>{cat}</span></SearchLink>)
+	// ?? cats
 
 	// search input value
 	const [value, valueSet] = useState("")
@@ -106,7 +105,7 @@ export default function Header() {
 		<>
 			<div className="header zi9">
 
-				<Burger onClick={toggleCats} />
+				{window.innerWidth <= mobileWidth && <Burger onClick={toggleCats} />}
 
 				{logoIcon()}
 

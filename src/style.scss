@@ -38,6 +38,7 @@ input, textarea {
 
 button{
 	width: 100%;
+	max-width: $widthSmall;
 	height: 40px;
 	margin-top: 30px;
 	color: $white;
@@ -74,10 +75,15 @@ a{
 		color: #000;
 	}
 }
+
 select {
 	border: 2px solid $brand;
 	border-radius: $borRadSmall;
 	height: 30px;
+}
+
+label {
+	font-style: italic;
 }
 // ? GLOBAL
 
@@ -203,8 +209,8 @@ $prodNum: 4;
 		margin-top: 10px;
 	}
 	&__icon{
-		height: 30px;
-		width: 30px;
+		height: 28px;
+		width: 28px;
 	}
 	// !! warning
 	&__info, &__counter{
@@ -213,6 +219,11 @@ $prodNum: 4;
 	}
 	&__counter{
 		overflow: visible;
+		// !!! +/-
+		span {
+			display: inline-block;
+			width: 40%;
+		}
 	}
 	&__title{
 		color: $gray;
@@ -301,13 +312,23 @@ $prodFullWidth: 600px;
 		color: $gray;
 	}
 }
+.section{
+	color: $brand; 
+	padding: 15px;
+	font-family: $fontSecondary;
+	white-space: nowrap;
+	&_active{
+		font-weight: 700;
+		border-bottom: 2px solid $brand;
+	}
+}
 // ? PRODFULL
 
 // ! CART
 .cart{
 	&__wrap{
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
 		flex-wrap: wrap;
 		max-width: $widthBig;
 		margin: 0 auto;
@@ -331,6 +352,7 @@ $prodFullWidth: 600px;
 	border-radius: $borRadSmall;
 	width: $widthSmall;
 	align-self: flex-start;
+	margin: 15px auto;
 }
 .brandBtn{
 	background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
@@ -367,17 +389,24 @@ $prodFullWidth: 600px;
 	}
 	&__nav{
 		align-items: center;
+		height: 40px;
 		// !!!
 		span{
 			padding: 15px;
+			white-space: nowrap;
 		}
+	}
+	// !!
+	input{
+		width: 200px;
 	}
 }
 .cats{
 	position: relative;
 	display: flex;
 	justify-content: center;
-	flex-wrap: wrap;
+	// flex-wrap: wrap;
+	overflow-x: auto; // todo `like BURGER`: catalog of prods
 	width: 100%;
 	background: $brand; // var 1
 	// background: lighten($brand, 30%); // var 2
@@ -398,7 +427,7 @@ $prodFullWidth: 600px;
 	&__form{
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-between;
+		justify-content: center;
 		max-width: $widthBig;
 		margin: 0 auto;
 		// !!!
@@ -410,6 +439,15 @@ $prodFullWidth: 600px;
 			display: flex;
 			flex-direction: column;
 			width: $widthBig / 3 - 50;
+			padding: 15px;
+			margin: 15px auto;
+			border: 1px dashed $gray;
+		}
+		// !!!
+		> p {
+			width: 100%; 
+			display: flex; 
+			justify-content: center;
 		}
 	}
 }
@@ -528,7 +566,7 @@ $prodFullWidth: 600px;
 .brand{
 	color: $brand;
 }
-.title{
+.title, .title2{
 	margin: 30px 0;
 	font-family: $fontSecondary;
 	color: $brand;
@@ -536,7 +574,12 @@ $prodFullWidth: 600px;
 	font-weight: 700;
 	letter-spacing: 1px;
 	text-align: center;
-	// width: 100%;
+}
+.title2{
+	margin: 15px 0;
+	font-size: 19px;
+	font-weight: 500;
+	letter-spacing: 0.5px;
 }
 .zi2{
 	z-index: 2;
@@ -606,6 +649,9 @@ $prodFullWidth: 600px;
 }
 .w100{
 	width: 100%;
+}
+.bold{
+	font-weight: 700;
 }
 // ? OTHER
 

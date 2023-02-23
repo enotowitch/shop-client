@@ -5,14 +5,16 @@ export default function ProdMenu(props) {
 
 	function onToggle(e) {
 		onSet({ 0: false, 1: false, 2: false, 3: false, [e.target.id]: true })
+		document.querySelectorAll(".section").forEach(each => each.classList.remove("section_active"))
+		e.target.classList.add("section_active")
 	}
 
 	return (
 		<div>
 
 			<div className="fse">
-				<div className="brand p" id="0" onClick={onToggle}>Characteristics</div>
-				<div className="brand p" id="1" onClick={onToggle}>Delivery & Payment</div>
+				<div className="section section_active" id="0" onClick={onToggle}>Characteristics</div>
+				<div className="section" id="1" onClick={onToggle}>Delivery & Payment</div>
 			</div>
 
 			{on[0] && <div>{props.children[0]}</div>}

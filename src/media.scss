@@ -1,4 +1,4 @@
-@media (max-width:500px) {
+@media (max-width:700px) {
 	.header__wrap{
 		width: 100%;
 	}
@@ -14,9 +14,25 @@
 			line-height: 200%;
 		}
 	}
+// order of `sections` in .add__form
+	.f1{
+		order: 2;
+	}
+	.f2{
+		order: 1;
+	}
+	.f3{
+		order: 3;
+	}
+	.f4{
+		order: 4;
+	}
+	.f5{
+		order: 5;
+	}
 }
 
-@media (min-width:501px) {
+@media (min-width:701px) {
 	.menu{
 		display: none;
 	}

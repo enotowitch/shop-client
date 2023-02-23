@@ -112,7 +112,7 @@ export default function Icon({ _id, name }) {
 	}
 	// ? icon
 
-	const isAdmin = true
+	const isAdmin = user?.email?.match(/admin/i)?.[0] // TODO
 	const forAdmin = ["upd", "del"]
 
 	// ! for ADMIN

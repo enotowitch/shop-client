@@ -108,7 +108,7 @@ export default function ProdView(props) {
 				{/* CART */}
 				{mode === "cart" &&
 					<>
-						<div className="prod__counter">
+						<div className="prod__counter" onClick={(e) => prevent(e)}>
 							<span onClick={(e) => handleCounter(e, "-")}>-</span>
 							{counter}
 							<span onClick={(e) => handleCounter(e, "+")}>+</span>

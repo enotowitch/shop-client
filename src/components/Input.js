@@ -6,11 +6,11 @@ export default function Input({ type, name, value, onChange, placeholder }) {
 	// type = text / textarea
 	return (
 		<>
-			{type === "text" || !type &&
+			{(type === "text" || type === "number" || !type) &&
 				<label>
 					{name}
 					<input
-						type="text"
+						type={type || "text"}
 						name={name}
 						value={value}
 						onChange={onChange}

@@ -113,58 +113,78 @@ export default function Add() {
 
 	// ! RETURN
 	return (
-		<form className="add__form" onSubmit={handleSubmit}>
+		<>
 
-			{/* // !! SECONDARY INFO */}
-			<div>
-				<Input type="textarea" name="compound" value={form.compound} onChange={handleChange} placeholder="compound" />
-				<Input name="calories" value={form.calories} onChange={handleChange} placeholder="calories" />
-				<Input name="proteins" value={form.proteins} onChange={handleChange} placeholder="proteins" />
-				<Input name="fats" value={form.fats} onChange={handleChange} placeholder="fats" />
-				<Input name="carbohydrates" value={form.carbohydrates} onChange={handleChange} placeholder="carbohydrates" />
-				<Input name="expiration" value={form.expiration} onChange={handleChange} placeholder="expiration" />
-				<Input name="temperature" value={form.temperature} onChange={handleChange} placeholder="temperature" />
-			</div>
-			{/* // ?? SECONDARY INFO */}
+			<div className="title pt">{title}</div>
 
-			{/* // !! MAIN INFO */}
-			<div>
-				<div className="title">{title}</div>
+			<form className="add__form" onSubmit={handleSubmit}>
 
-				<Input name="title" value={form.title} onChange={handleChange} placeholder="title" />
-				<Input name="weight" value={form.weight} onChange={handleChange} placeholder="weight" />
-				<Input name="cats" value={form.cats} onChange={handleChange} placeholder="cats" />
 
-				<Input type="textarea" name="text" value={form.text} onChange={handleChange} placeholder="text" />
+				{/* // !! SECONDARY INFO */}
+				<div className="f1">
 
-				{/* // ! FILE */}
-				<input
-					hidden
-					ref={fileRef}
-					type="file"
-					name="imgUrl"
-					onChange={handleChangeFile}
-				/>
+					<div className="title2">Compound</div>
 
-				<img src={imgLoaded || imgDummy} onClick={() => fileRef.current.click()} />
-				{/* // ? FILE */}
+					<Input type="textarea" name="compound" value={form.compound} onChange={handleChange} placeholder="compound: text" />
+					<Input type="number" name="calories" value={form.calories} onChange={handleChange} placeholder="calories: number" />
+					<Input type="number" name="proteins" value={form.proteins} onChange={handleChange} placeholder="proteins: number" />
+					<Input type="number" name="fats" value={form.fats} onChange={handleChange} placeholder="fats: number" />
+					<Input type="number" name="carbohydrates" value={form.carbohydrates} onChange={handleChange} placeholder="carbohydrates: number" />
+					<Input type="number" name="expiration" value={form.expiration} onChange={handleChange} placeholder="expiration: number" />
+					<Input name="temperature" value={form.temperature} onChange={handleChange} placeholder="temperature: text" />
+				</div>
+				{/* // ?? SECONDARY INFO */}
 
-				<Input name="price" value={form.price} onChange={handleChange} placeholder="price" />
+				{/* // !! MAIN INFO */}
+				<div className="f2">
 
-				<button className="brandBtn">{title}</button>
+					<div className="title2">Main Info</div>
+
+					<Input name="title" value={form.title} onChange={handleChange} placeholder="title: text" />
+					<Input type="number" name="weight" value={form.weight} onChange={handleChange} placeholder="weight: number" />
+					<Input name="cats" value={form.cats} onChange={handleChange} placeholder="cats: text separated by commas" />
+
+					<Input type="textarea" name="text" value={form.text} onChange={handleChange} placeholder="text: text" />
+
+					{/* // ! FILE */}
+					<input
+						hidden
+						ref={fileRef}
+						type="file"
+						name="imgUrl"
+						onChange={handleChangeFile}
+					/>
+
+					<img src={imgLoaded || imgDummy} onClick={() => fileRef.current.click()} />
+					{/* // ? FILE */}
+
+					<Input type="number" name="price" value={form.price} onChange={handleChange} placeholder="price: number" />
+
+				</div>
+				{/* // ?? MAIN INFO */}
+
+				{/* // !! OTHER */}
+				<div className="f3">
+
+					<div className="title2">Delivery</div>
+
+					<Input type="textarea" name="delivery" value={form.delivery} onChange={handleChange} placeholder="delivery: text" />
+					<Input type="textarea" name="payment" value={form.payment} onChange={handleChange} placeholder="payment: text" />
+					<Input type="textarea" name="warranty" value={form.warranty} onChange={handleChange} placeholder="warranty: text" />
+				</div>
+				{/* // ?? OTHER */}
+
+				<p className="f4">
+					<button className="brandBtn">{title}</button>
+				</p>
 
 				{/* // todo DELETE LATER */}
-				<button onClick={() => (localStorage.removeItem("test"), window.location.href = "/")}>test</button>
-			</div>
-			{/* // ?? MAIN INFO */}
+				<p className="f5">
+					<button onClick={() => (localStorage.removeItem("test"), window.location.href = "/")}>test</button>
+				</p>
+				{/* // todo DELETE LATER */}
+			</form>
 
-			{/* // !! OTHER */}
-			<div>
-				<Input type="textarea" name="delivery" value={form.delivery} onChange={handleChange} placeholder="delivery" />
-				<Input type="textarea" name="payment" value={form.payment} onChange={handleChange} placeholder="payment" />
-				<Input type="textarea" name="warranty" value={form.warranty} onChange={handleChange} placeholder="warranty" />
-			</div>
-			{/* // ?? OTHER */}
-		</form>
+		</>
 	)
 }
