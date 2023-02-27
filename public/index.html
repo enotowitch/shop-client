@@ -23,4 +23,26 @@
 	<div id="root"></div>
 </body>
 
+<script type="text/javascript">
+	function googleTranslateElementInit() {
+		// ! set lang on first load
+		if (!document.cookie.match(/autoLangSet/)) {
+			let browserLang = navigator.language || navigator.userLanguage
+			browserLang = browserLang.match(/\w+/)
+
+			document.cookie = `googtrans=/${browserLang}`
+			document.cookie = `autoLangSet=true`
+		}
+		// ! save lang on reload
+		setInterval(() => {
+			document.cookie = `googtrans=/${document.documentElement.lang}`
+		}, 2000)
+
+		new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'uk,en,it,fr,tr,zh-CN,ar,hi,es,pt,ja,de,ko,pl,az,ro,grk,cs,ru', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+	}
+</script>
+
+<script type="text/javascript"
+	src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </html>

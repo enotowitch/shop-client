@@ -3,6 +3,7 @@ import * as api from "../api"
 import { useNavigate, useParams } from "react-router-dom"
 import imgDummy from "../img/img.svg"
 import Input from "./Input"
+import test from "../test"
 
 export default function Add() {
 
@@ -13,20 +14,20 @@ export default function Add() {
 		||
 		{
 			// ! MAIN
-			title: `${Math.random()}`,
-			weight: `${Math.random()}`,
-			cats: `${Math.random()}`,
-			text: `${Math.random()}`,
+			title: ``, // ${Math.random()}
+			weight: ``, // ${Math.random()}
+			categories: ``, // ${Math.random()}
+			text: ``, // ${Math.random()}
 			imgUrl: ``,
-			price: `${Math.random()}`,
+			price: ``, // ${Math.random()}
 			// ! SECONDARY
-			compound: `${Math.random()}`,
-			calories: `${Math.random()}`,
-			proteins: `${Math.random()}`,
-			fats: `${Math.random()}`,
-			carbohydrates: `${Math.random()}`,
-			expiration: `${Math.random()}`,
-			temperature: `${Math.random()}`,
+			composition: ``, // ${Math.random()}
+			calories: ``, // ${Math.random()}
+			proteins: ``, // ${Math.random()}
+			fats: ``, // ${Math.random()}
+			carbohydrates: ``, // ${Math.random()}
+			expiration: ``, // ${Math.random()}
+			temperature: ``, // ${Math.random()}
 			// ! OTHER
 			delivery: ``, // ${JSON.parse(localStorage.getItem("delivery"))}
 			payment: ``, // ${JSON.parse(localStorage.getItem("payment"))}
@@ -35,18 +36,9 @@ export default function Add() {
 	)
 
 	// ! TODO - TEST REMOVE LATER
-	useEffect(() => {
-		async function test() {
-			api.addProd({ title: "Арахис", weight: "100", cats: "Орехи", text: "Важная сельскохозяйственная культура, возделываемая в промышленных масштабах ради плодов — арахисовых «орехов».", imgUrl: "https://static.1000.menu/img/content/35448/araxis-s-solu-na-skovorode_1560078001_1_max.jpg", price: "10" })
-			api.addProd({ title: "Финики", weight: "100", cats: "Сухофрукты", text: "С давних времён используется человеком как высокоценный продукт питания. В продажу обычно поступают как сухофрукты. Популярнейшие сорта финиковой пальмы — «деглет нур» и «меджул» — культивируются в промышленных масштабах в странах с жарким климатом.", imgUrl: "https://cdn.lifehacker.ru/wp-content/uploads/2017/03/7-veskih-prichin-vklyuchit-finiki-v-svoj-racion_1622833900.jpg", price: "8" })
-			api.addProd({ title: "Миндаль", weight: "50", cats: "Орехи", text: "Широко культивируется вид Миндаль обыкновенный. Более 80 % миндаля на мировом рынке происходит из США, главным образом из Калифорнии[2][3].", imgUrl: "https://nuts.org.ua/wp-content/uploads/2020/05/mindal-s-skorlupe.jpg", price: "20" })
-			api.addProd({ title: "Фундук", weight: "50", cats: "Орехи", text: "Лесно́й оре́х — орех любого из 20 видов кустарника (реже дерева) рода Лещина (Corylus) семейства Берёзовые (Betulaceae), в том числе лещины обыкновенной (Corylus avellana) и лещины крупной (Corylus maxima). Орехи крупноплодных форм лещины, в основном лещины обыкновенной, лещины крупной и лещины понтийской, называют фундуком[1][2] (тур. findik[3]).", imgUrl: "https://gradinamax.com.ua/uploads/catalog_products/funduk-shedevr_1.jpg", price: "22" })
-			api.addProd({ title: "Корица", weight: "30", cats: "Cпеции", text: "Кори́ца, или Кори́чник цейло́нский (лат. Cinnamomum verum) — вечнозелёное дерево, вид рода Коричник (Cinnamomum) семейства Лавровые (Lauraceae). Корицей также называется и высушенная кора дерева, которая используется в качестве пряности.", imgUrl: "https://n1s1.hsmedia.ru/51/6b/33/516b33298166748b65afd852b3ee75ea/1000x745_0xac120003_19273727461562657802.jpg", price: "16" })
-		}
-
-		!localStorage.getItem("test") && test() // run test once
-		localStorage.setItem("test", true)
-	}, [])
+	async function test_() {
+		test.map(prod => api.addProd(prod))
+	}
 	// ? TODO - TEST REMOVE LATER
 
 	// ! handleChange
@@ -123,9 +115,9 @@ export default function Add() {
 				{/* // !! SECONDARY INFO */}
 				<div className="f1">
 
-					<div className="title2">Compound</div>
+					<div className="title2">composition</div>
 
-					<Input type="textarea" name="compound" value={form.compound} onChange={handleChange} placeholder="compound: text" />
+					<Input type="textarea" name="composition" value={form.composition} onChange={handleChange} placeholder="composition: text" />
 					<Input type="number" name="calories" value={form.calories} onChange={handleChange} placeholder="calories: number" />
 					<Input type="number" name="proteins" value={form.proteins} onChange={handleChange} placeholder="proteins: number" />
 					<Input type="number" name="fats" value={form.fats} onChange={handleChange} placeholder="fats: number" />
@@ -142,7 +134,7 @@ export default function Add() {
 
 					<Input name="title" value={form.title} onChange={handleChange} placeholder="title: text" />
 					<Input type="number" name="weight" value={form.weight} onChange={handleChange} placeholder="weight: number" />
-					<Input name="cats" value={form.cats} onChange={handleChange} placeholder="cats: text separated by commas" />
+					<Input name="categories" value={form.categories} onChange={handleChange} placeholder="categories: text separated by commas" />
 
 					<Input type="textarea" name="text" value={form.text} onChange={handleChange} placeholder="text: text" />
 
@@ -180,7 +172,7 @@ export default function Add() {
 
 				{/* // todo DELETE LATER */}
 				<p className="f5">
-					<button onClick={() => (localStorage.removeItem("test"), window.location.href = "/")}>test</button>
+					<button onClick={() => (test_())}>test</button>
 				</p>
 				{/* // todo DELETE LATER */}
 			</form>

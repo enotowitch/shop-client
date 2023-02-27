@@ -78,16 +78,16 @@ export default function Icon({ _id, name }) {
 	// ! delProd
 	async function del(e, _id) {
 		prevent(e)
-		if (window.confirm("DELETE PRODUCT?")) {
-			delAnim(e, async () => {
-				await api.delProd(_id)
-				prodsUpdate()
-				// * if in ProdFull
-				if (window.location.pathname.includes("/prod/")) {
-					window.location.reload()
-				}
-			})
-		}
+		// if (window.confirm("DELETE PRODUCT?")) {
+		delAnim(e, async () => {
+			await api.delProd(_id)
+			prodsUpdate()
+			// * if in ProdFull
+			if (window.location.pathname.includes("/prod/")) {
+				window.location.reload()
+			}
+		})
+		// }
 	}
 	// ! likeProd
 	async function liked(e, _id) {

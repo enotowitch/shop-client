@@ -7,6 +7,13 @@ import Burger from "./Burger"
 import SearchLink from "./links/SearchLink"
 import { useNavigate } from "react-router-dom"
 import { mobileWidth } from "../consts"
+import profile from "../img/profile.svg"
+import profiled from "../img/profiled.svg"
+import like from "../img/lik.svg"
+import liked from "../img/liked.svg"
+import cart from "../img/cart.svg"
+import carted from "../img/carted.svg"
+import add from "../img/add.svg"
 
 
 
@@ -28,14 +35,14 @@ export default function Header() {
 
 	const profileIcon = () => (
 		user
-			? <Link to="/profile"><span className="brand">PROFILE</span></Link>
-			: <Link to="/profile"><span>PROFILE</span></Link>
+			? <Link to="/profile"><img className="header__icon" src={profiled} /></Link>
+			: <Link to="/profile"><img className="header__icon" src={profile} /></Link>
 	)
 
 	const likeIcon = () => (
 		user?.liked?.length > 0
-			? <Link to="/like"><span className="brand">LIKED ({user?.liked?.length})</span></Link>
-			: <Link to="/like"><span>LIKED</span></Link>
+			? <Link to="/like"><img className="header__icon" src={liked} /></Link>
+			: <Link to="/like"><img className="header__icon" src={like} /></Link>
 	)
 
 	const cartIcon = () => {
@@ -44,32 +51,33 @@ export default function Header() {
 
 		return user?.carted?.length > 0
 			? <Link to="/cart">
-				<span className="brand">CART ({uniqId?.length})</span>
+				<img className="header__icon" src={carted} />
+				<b className="cart__num">{uniqId?.length}</b>
 			</Link>
-			: <Link to="/cart"><span>CART</span></Link>
+			: <Link to="/cart"><img className="header__icon" src={cart} /></Link>
 	}
 
 	const addIcon = () => (
 		isAdmin
-		&& <Link to="/add"><span className="brand">ADD</span></Link>
+		&& <Link to="/add"><img className="header__icon" src={add} /></Link>
 	)
 
-	// !! cats
-	const [showCats, showCatsSet] = useState(true)
+	// !! categories
+	const [showCategories, showCategoriesSet] = useState(true)
 
 	useEffect(() => {
-		// show cats for DESKTOP, else user has to click BURGER to see cats
-		window.innerWidth > mobileWidth ? showCatsSet(true) : showCatsSet(false)
+		// show categories for DESKTOP, else user has to click BURGER to see categories
+		window.innerWidth > mobileWidth ? showCategoriesSet(true) : showCategoriesSet(false)
 	}, [])
 
-	function toggleCats() {
-		showCatsSet(prev => !prev)
+	function toggleCategories() {
+		showCategoriesSet(prev => !prev)
 	}
 
-	const cats = []
+	const categories = []
 	prods?.map(prod => {
 		// todo .split(", ") => adding new prod admin must write: prodCat1, prodCat2, prodCat3... (,<space>)
-		prod.cats.split(", ").map(cat => !cats.includes(cat) && cats.push(cat))
+		prod?.categories?.split(", ").map(cat => !categories.includes(cat) && categories.push(cat))
 	})
 
 	// for MOBILE
@@ -77,8 +85,8 @@ export default function Header() {
 		document?.querySelector(".menu__btn")?.click()
 	}
 
-	const cats_ = cats.map(cat => <SearchLink key={cat} searchValue={cat} field="cats"><span onClick={closeMenu}>{cat}</span></SearchLink>)
-	// ?? cats
+	const categories_ = categories.map(cat => <SearchLink key={cat} searchValue={cat} field="categories"><span onClick={closeMenu}>{cat}</span></SearchLink>)
+	// ?? categories
 
 	// search input value
 	const [value, valueSet] = useState("")
@@ -105,7 +113,7 @@ export default function Header() {
 		<>
 			<div className="header zi9">
 
-				{window.innerWidth <= mobileWidth && <Burger onClick={toggleCats} />}
+				{window.innerWidth <= mobileWidth && <Burger onClick={toggleCategories} />}
 
 				{logoIcon()}
 
@@ -119,17 +127,18 @@ export default function Header() {
 					{searchIcon()}
 				</div>
 
-				<div className="header__wrap header__nav" onClick={redirect}>
+				<div className="header__wrap header__nav" onClick={redirect} translate="no">
 
+					<span id="google_translate_element"></span>
 					{profileIcon()}
 					{likeIcon()}
 					{cartIcon()}
 					{addIcon()}
 				</div>
 
-				{showCats &&
-					<div className="cats zi2">
-						{cats_}
+				{showCategories &&
+					<div className="categories zi2">
+						{categories_}
 					</div>}
 
 			</div>

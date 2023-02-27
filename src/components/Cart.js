@@ -43,7 +43,7 @@ export default function Cart() {
 					<div className="total p">
 						<div className="fsb mb">
 							<span className="title m0">Total</span>
-							<span className="title m0">{currency}{total}</span>
+							<span className="title m0" translate="no">{currency}{total}</span>
 						</div>
 
 						<div>Order instructions</div>

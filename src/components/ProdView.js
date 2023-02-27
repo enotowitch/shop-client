@@ -15,7 +15,11 @@ export default function ProdView(props) {
 
 	const { user, userUpdate } = useContext(Context)
 
-	const { title, cats, imgUrl, price, weight, _id } = props.obj
+	let title, categories, imgUrl, price, weight, _id
+	if (props?.obj) {
+		({ title, categories, imgUrl, price, weight, _id } = props?.obj)
+	}
+	
 	const { mode, addInfo } = props
 
 	const [totalPrice, totalPriceSet] = useState(props.totalPrice)
@@ -38,7 +42,7 @@ export default function ProdView(props) {
 	}
 	// ?? FUNCTIONS
 
-	const cats_ = cats?.split(",").map(cat => <SearchLink key={cat} searchValue={cat} field="cats"><span className="prod__cat">{cat}</span></SearchLink>)
+	const categories_ = categories?.split(",").map(cat => <SearchLink key={cat} searchValue={cat} field="categories"><span className="prod__cat">{cat}</span></SearchLink>)
 
 	// ! COUNTER
 	const quantity = user?.carted.filter(id => id === _id).length // user carted same prod (pieces)
@@ -102,13 +106,13 @@ export default function ProdView(props) {
 				</div>
 
 				{mode !== "cart" &&
-					<div className="prod__cats">{cats_}</div>
+					<div className="prod__categories">{categories_}</div>
 				}
 
 				{/* CART */}
 				{mode === "cart" &&
 					<>
-						<div className="prod__counter" onClick={(e) => prevent(e)}>
+						<div className="prod__counter" onClick={(e) => prevent(e)} translate="no">
 							<span onClick={(e) => handleCounter(e, "-")}>-</span>
 							{counter}
 							<span onClick={(e) => handleCounter(e, "+")}>+</span>

@@ -4,9 +4,9 @@ export default function ProdMenu(props) {
 	const [on, onSet] = useState({ 0: true, 1: false, 2: false, 3: false })
 
 	function onToggle(e) {
-		onSet({ 0: false, 1: false, 2: false, 3: false, [e.target.id]: true })
+		onSet({ 0: false, 1: false, 2: false, 3: false, [e.currentTarget.id]: true })
 		document.querySelectorAll(".section").forEach(each => each.classList.remove("section_active"))
-		e.target.classList.add("section_active")
+		e.currentTarget.classList.add("section_active")
 	}
 
 	return (

@@ -53,7 +53,7 @@ export default function ProdFull() {
 
 					<ProdMenu>
 						<>
-							<FAQ title="compound" text={prod.compound} />
+							<FAQ title="composition" text={prod.composition} />
 							<FAQ title="calories" text={prod.calories} />
 							<FAQ title="proteins" text={prod.proteins} />
 							<FAQ title="fats" text={prod.fats} />
