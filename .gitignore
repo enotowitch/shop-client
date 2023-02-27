@@ -23,11 +23,11 @@ yarn-debug.log*
 yarn-error.log*
 
 flow.txt
-public/img
-src/img
-*.svg
-*.png
-*.webp
-*.jpg
-*.jpeg
-*.gif
+# public/img
+# src/img
+# *.svg
+# *.png
+# *.webp
+# *.jpg
+# *.jpeg
+# *.gif
