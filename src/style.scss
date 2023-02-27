@@ -15,6 +15,7 @@ $borRadSmall: 12px;
 $borRadBig: 20px;
 // ! font
 $fontSecondary: Montserrat;
+$fontMain: Roboto;
 // ! boxShadow
 $boxShadow: 0px 10px 15px -3px rgba(0,0,0,0.2);
 // ?? VARS
@@ -85,6 +86,11 @@ select {
 label {
 	font-style: italic;
 }
+
+// cursor pointer
+.cp, select, button, .prod__icon, .section, .FAQ{
+	cursor: pointer;
+}
 // ? GLOBAL
 
 // ! LOGIN
@@ -125,9 +131,6 @@ input{
 	position: fixed;
 	top: 0;
 	left: 0;
-}
-.loginBtn{
-	background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
 }
 .logoutBtn{
 	background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);
@@ -196,7 +199,7 @@ $prodNum: 4;
 	// ! photo
 	&__photo{
 		width: 100%;
-		height: 100px;
+		height: 160px;
 		object-fit: contain;
 	}
 	&_big &__photo{
@@ -393,8 +396,8 @@ $prodFullWidth: 600px;
 		align-items: center;
 		height: 40px;
 		// !!!
-		span{
-			padding: 15px;
+		a{
+			// padding: 15px;
 			white-space: nowrap;
 		}
 	}
@@ -413,14 +416,17 @@ $prodFullWidth: 600px;
 	background: $brand; // var 1
 	// background: lighten($brand, 30%); // var 2
 	padding: 15px;
+}
 	// !!! one cat
-	span{
-		font-family: $fontSecondary;
-		padding: 10px;
-		color: $white; // var 1
-		// color: $black; // var 2
-		font-weight: 700;
-		text-transform: uppercase;
+.cat{
+	font-family: $fontSecondary;
+	padding: 10px;
+	color: $white; // var 1
+	// color: $black; // var 2
+	font-weight: 700;
+	text-transform: uppercase;
+	&_active{
+		color: darken($brand, 25%);
 	}
 }
 // ? HEADER
@@ -538,30 +544,27 @@ $prodFullWidth: 600px;
 }
 
 @keyframes banner {
-	0%{
-		right: 0%;
-	}
-	33%{
-		right: 100%;
-	}
-	66%{
-		right: 200%;
-	}
-	100%{
-		right: 300%;
-	}
+	0%{right: 0%;}
+	33%{right: 100%;}
+	66%{right: 200%;}
+	100%{right: 300%;}
 }
 
 .delAnim{
 	animation: delAnim .5s forwards;
 }
 @keyframes delAnim {
-	0%{
-		filter: blur(0)
-	}
-	100%{
-		filter: blur(10px)
-	}
+	0%{filter: blur(0)}
+	100%{filter: blur(10px)}
+}
+
+.opAnim{
+animation: opAnim 2s forwards;
+}
+
+@keyframes opAnim {
+	0%{opacity: 0;}
+	100%{opacity: 1;}
 }
 // ? animation
 
@@ -584,7 +587,7 @@ $prodFullWidth: 600px;
 .brand{
 	color: $brand;
 }
-.title, .title2{
+.title, .title2, .googTransT1{
 	margin: 30px 0;
 	font-family: $fontSecondary;
 	color: $brand;
@@ -592,6 +595,9 @@ $prodFullWidth: 600px;
 	font-weight: 700;
 	letter-spacing: 1px;
 	text-align: center;
+}
+.googTransT1{
+	font-family: $fontMain;
 }
 .title2{
 	margin: 15px 0;
@@ -629,6 +635,12 @@ $prodFullWidth: 600px;
 .ml{
 	margin-left: 15px;
 }
+.mr{
+	margin-right: 15px;
+}
+.ml3{
+	margin-left: 3px;
+}
 .p{
 	padding: 15px;
 }
@@ -648,6 +660,7 @@ $prodFullWidth: 600px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-wrap: wrap;
 }
 .fsb{
 	display: flex;
@@ -673,6 +686,9 @@ $prodFullWidth: 600px;
 }
 .ttc{
 	text-transform: capitalize;
+}
+.ttu{
+	text-transform: uppercase;
 }
 // ? OTHER
 

@@ -72,9 +72,9 @@ export const uploadProdImg = async (formData) => {
 }
 
 // ! getAllProd
-export const getAllProd = async (form) => {
+export const getAllProd = async () => {
 	try {
-		const { data } = await instance.get(`prod`, form)
+		const { data } = await instance.get(`prod`)
 		return data
 	} catch (err) {
 		console.log(err)

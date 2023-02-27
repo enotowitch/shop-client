@@ -73,7 +73,7 @@ export default function ProdFull() {
 				<div className="prodFull__info">
 					<div className="title">{prod.title}</div>
 					<div className="tac">{currency}{prod.price} / {prod.weight}{weight_}</div>
-					<button className="brandBtn mb2" onClick={buy}>Buy</button>
+					<button className="brandBtn mb2 c" onClick={buy}>Buy</button>
 					<div>{prod.text}</div>
 				</div>
 

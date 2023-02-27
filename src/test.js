@@ -56,7 +56,7 @@ export default
 			// ! MAIN
 			title: `Dried Mango`,
 			weight: `100`,
-			categories: `dried fruits`,
+			categories: `dried fruits, gluten free`,
 			text: `The Nut Market's Australian Dried Mango are premium quality, Queensland Grown dried mango cheeks. Grown and processed in Australia, our vibrant and fruity mango cheeks are 100% preservative and additive-free, and are non-GMO. We source the sweetest and choicest mango “cheeks” we can find, so the pieces are large and delicious. Our mango is peeled and cut by hand at the peak of ripeness so you can really taste the difference. `,
 			imgUrl: `https://cdn.shopify.com/s/files/1/2185/7175/products/DriedMango_The_Nut_Market_265_700x.png?v=1617874540`,
 			price: `11.95`,
@@ -77,7 +77,7 @@ export default
 			// ! MAIN
 			title: `Cashews Roasted And Salted`,
 			weight: `200`,
-			categories: `nuts`,
+			categories: `nuts, gluten free`,
 			text: `These scrumptious cashews have been roasted in sunflower oil and lightly salted. Roasted and salted cashew nuts are always a family favourite due to their crunchy texture, moorish flavour and nutty aroma. These roasted cashews have nothing artificial added. Delicious for snacking on or ground into a salty, fresh, additive-free nut butter. Interestingly, cashews are related to pistachios and mangoes and they are actually classified as a seed not a nut due to their unique growing process.`,
 			imgUrl: `https://cdn.shopify.com/s/files/1/2185/7175/products/CashewsRoasted_SaltedProduct_800x800.png?v=1597552387`,
 			price: `8.95`,
@@ -98,7 +98,7 @@ export default
 			// ! MAIN
 			title: `Crystallised Ginger`,
 			weight: `125`,
-			categories: `dried fruits`,
+			categories: `dried fruits, gluten free`,
 			text: `The Nut Market's Crystallised Ginger is sourced locally, right here in Queensland from Buderim Ginger. Crystallised ginger (sometimes known as candy ginger) is made of ginger-root that has been cooked until softened, and then lightly coated in sugar. Our Crystallised Ginger is pungent with a spicy-sweet flavour and is moist and chewy. It makes an ideal zingy snack, a unique cup of tea, or ingredient in your cooking.`,
 			imgUrl: `https://cdn.shopify.com/s/files/1/2185/7175/products/GingerCrystalised_The_Nut_Market_257_1620x1080.png?v=1617868916`,
 			price: `7.95`,
@@ -361,6 +361,69 @@ export default
 			fats: `0.025`,
 			carbohydrates: `31`,
 			expiration: `240`,
+			temperature: temperature,
+			// ! OTHER
+			delivery: delivery,
+			payment: payment,
+			warranty: warranty,
+		},
+		{
+			// ! MAIN
+			title: `Almond Butter`,
+			weight: `300`,
+			categories: `butter`,
+			text: `Our almond-butter is a product we make in-store each week. It's as fresh as you can get and a delicious spread. To make almond butter, we use Australian-grown almonds and grind them down in our in-house nut mill. We use dry-roasted almonds to bring out the nicest flavour and texture. Compared with using raw almonds, roasted almond butter is richer and healthier. The Nut Market's almond butter is always nutritious, fresh and completely delicious.`,
+			imgUrl: `https://cdn.shopify.com/s/files/1/2185/7175/products/AlmondButterProduct_800x800.png?v=1597659876`,
+			price: `11.75`,
+			// ! SECONDARY
+			composition: `Almond butter tastes milder than other nut spreads. Ours contains no additives at all. This includes sugar and salt which are often found in commercial nut butters. It's also preservative-free, non-GMO and ready to eat by the spoonful! You can buy almond butter to use as a spread or in desserts, raw food recipes, savoury and sweet baked goods. You can include it in your smoothies, on cereal or on fruit. Its flavour is complementary to so many everyday foods. This makes it a pantry-staple for including some goodness in whatever meal you are making.`,
+			calories: `516`,
+			proteins: `10.4`,
+			fats: `27.75`,
+			carbohydrates: `2.25`,
+			expiration: `60`,
+			temperature: temperature,
+			// ! OTHER
+			delivery: delivery,
+			payment: payment,
+			warranty: warranty,
+		},
+		{
+			// ! MAIN
+			title: `Chocolate Hazelnut Butter`,
+			weight: `300`,
+			categories: `butter, chocolate`,
+			text: `We take the highest quality, dry roasted hazelnuts, mix them with our Organic Vegan Dark Chocolate Callets and grind it all down in our in-house nut mill to make our famous Nut Market Chocolate Hazelnut Butter. This vegan Nutella like spread contains no additives, including sugar or salt – often found in commercial nut butters, it's preservative free and ready to eat by the spoonful! Hazelnut chocolate butter is delicious as a spread or can be added to desserts, raw food recipes and sweet baked goods.`,
+			imgUrl: `https://cdn.shopify.com/s/files/1/2185/7175/products/HazelnutChocolateButterProduct_800x800.png?v=1597662729`,
+			price: `13.95`,
+			// ! SECONDARY
+			composition: `It has a lovely toasted, smooth, chocolatey flavour and aroma with all the added health benefits of hazelnuts and dark chocolate.`,
+			calories: `606`,
+			proteins: `6.19`,
+			fats: `26.77`,
+			carbohydrates: `9.81`,
+			expiration: `75`,
+			temperature: temperature,
+			// ! OTHER
+			delivery: delivery,
+			payment: payment,
+			warranty: warranty,
+		},
+		{
+			// ! MAIN
+			title: `Macadamia Butter`,
+			weight: `270`,
+			categories: `butter`,
+			text: `We make our macadamia nut butter by hand, in-store every week. Our macadamia nut butter is some of the freshest you will find. Using Australian-grown, raw macadamias, we blend them down in our in-house nut mill. The process produces a pure and creamy Macadamia Nut Butter. This mild-tasting spread contains no additives, including sugar or salt. Anyone who eats nut butters knows that they are usually full of preservatives. Ours is preservative-free and ready to eat by the spoonful! Macadamia nut butter is delicious as a spread. It is also great in desserts, raw food recipes, savoury and sweet baked goods.`,
+			imgUrl: `https://cdn.shopify.com/s/files/1/2185/7175/products/MacadamiaButterProduct_800x800.png?v=1597664880`,
+			price: `19.95`,
+			// ! SECONDARY
+			composition: `Macadamia butter has a mild nutty flavour and milky texture. It also has all the added health benefits of Macadamias. Macadamia nuts are rich in monounsaturated fats, a type of fat that may boost heart health. Studies have shown macadamia butter can lower your total LDL (bad) cholesterol levels. Macadamia butter is low in carbs and sugar and has a moderate fibre content. Its high fat content makes it perfect for low-carbohydrate diets. Macadamia nut butter is unlikely to spike your blood sugar levels. It is often recommended for people with diabetes or obesity.`,
+			calories: `539`,
+			proteins: `4.6`,
+			fats: `38`,
+			carbohydrates: `5`,
+			expiration: `100`,
 			temperature: temperature,
 			// ! OTHER
 			delivery: delivery,

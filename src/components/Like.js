@@ -16,7 +16,7 @@ export default function Like() {
 	// ! RETURN
 	return (
 		<>
-			<div className="title pt">Liked:</div>
+			<div className="title">Liked:</div>
 
 			{userLike?.length === 0 && <div className="title danger pt">You have no liked products</div>}
 			<div className="prods">

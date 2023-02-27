@@ -30,7 +30,7 @@ export default function Cart() {
 	// ! RETURN
 	return (
 		<>
-			<div className="title pt">Cart:</div>
+			<div className="title">Cart:</div>
 
 			<div className="cart__wrap">
 
@@ -43,7 +43,7 @@ export default function Cart() {
 					<div className="total p">
 						<div className="fsb mb">
 							<span className="title m0">Total</span>
-							<span className="title m0" translate="no">{currency}{total}</span>
+							<span className="title m0" translate="no">{currency}{total.toFixed(2)}</span>
 						</div>
 
 						<div>Order instructions</div>

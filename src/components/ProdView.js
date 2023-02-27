@@ -19,7 +19,7 @@ export default function ProdView(props) {
 	if (props?.obj) {
 		({ title, categories, imgUrl, price, weight, _id } = props?.obj)
 	}
-	
+
 	const { mode, addInfo } = props
 
 	const [totalPrice, totalPriceSet] = useState(props.totalPrice)
@@ -105,9 +105,9 @@ export default function ProdView(props) {
 					<div className="prod__price">{currency}{price}</div>
 				</div>
 
-				{mode !== "cart" &&
+				{/* {mode !== "cart" &&
 					<div className="prod__categories">{categories_}</div>
-				}
+				} */}
 
 				{/* CART */}
 				{mode === "cart" &&
@@ -117,7 +117,7 @@ export default function ProdView(props) {
 							{counter}
 							<span onClick={(e) => handleCounter(e, "+")}>+</span>
 							<div>{totalWeight}{weight_}</div>
-							<div>{currency}{totalPrice}</div>
+							<div>{currency}{totalPrice.toFixed(2)}</div>
 						</div>
 
 

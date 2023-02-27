@@ -41,7 +41,9 @@ export default function Header() {
 
 	const likeIcon = () => (
 		user?.liked?.length > 0
-			? <Link to="/like"><img className="header__icon" src={liked} /></Link>
+			? <Link to="/like"><img className="header__icon" src={liked} />
+				<b className="cart__num ml3">{user?.liked?.length}</b>
+			</Link>
 			: <Link to="/like"><img className="header__icon" src={like} /></Link>
 	)
 
@@ -80,12 +82,18 @@ export default function Header() {
 		prod?.categories?.split(", ").map(cat => !categories.includes(cat) && categories.push(cat))
 	})
 
-	// for MOBILE
-	function closeMenu() {
+	function catFn(e) {
+		// * for MOBILE
 		document?.querySelector(".menu__btn")?.click()
+		// all devices
+		// * active cat
+		// document.querySelectorAll(".cat").forEach(each => each.classList.remove("cat_active"))
+		// e.currentTarget.classList.add("cat_active")
+		// * thank you googTrans
+		document.querySelector(".googTransT1").innerText = e.currentTarget.innerText
 	}
 
-	const categories_ = categories.map(cat => <SearchLink key={cat} searchValue={cat} field="categories"><span onClick={closeMenu}>{cat}</span></SearchLink>)
+	const categories_ = categories.map(cat => <SearchLink key={cat} searchValue={cat} field="categories"><span className="cat" onClick={catFn}>{cat}</span></SearchLink>)
 	// ?? categories
 
 	// search input value

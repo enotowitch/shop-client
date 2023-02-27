@@ -14,20 +14,20 @@ export default function Add() {
 		||
 		{
 			// ! MAIN
-			title: ``, // ${Math.random()}
-			weight: ``, // ${Math.random()}
-			categories: ``, // ${Math.random()}
-			text: ``, // ${Math.random()}
+			title: `${Math.random()}`, // 
+			weight: `${Math.random()}`, // 
+			categories: `${Math.random()}`, // 
+			text: `${Math.random()}`, // 
 			imgUrl: ``,
-			price: ``, // ${Math.random()}
+			price: `${Math.random()}`, // 
 			// ! SECONDARY
-			composition: ``, // ${Math.random()}
-			calories: ``, // ${Math.random()}
-			proteins: ``, // ${Math.random()}
-			fats: ``, // ${Math.random()}
-			carbohydrates: ``, // ${Math.random()}
-			expiration: ``, // ${Math.random()}
-			temperature: ``, // ${Math.random()}
+			composition: `${Math.random()}`, // 
+			calories: `${Math.random()}`, // 
+			proteins: `${Math.random()}`, // 
+			fats: `${Math.random()}`, // 
+			carbohydrates: `${Math.random()}`, // 
+			expiration: `${Math.random()}`, // 
+			temperature: `${Math.random()}`, // 
 			// ! OTHER
 			delivery: ``, // ${JSON.parse(localStorage.getItem("delivery"))}
 			payment: ``, // ${JSON.parse(localStorage.getItem("payment"))}
@@ -37,7 +37,13 @@ export default function Add() {
 
 	// ! TODO - TEST REMOVE LATER
 	async function test_() {
-		test.map(prod => api.addProd(prod))
+		const prods = await api.getAllProd()
+		if (prods.length === 0) {
+			test.map(prod => api.addProd(prod))
+			navigate("/")
+		} else {
+			alert("test can be done with 0 products")
+		}
 	}
 	// ? TODO - TEST REMOVE LATER
 
@@ -107,7 +113,7 @@ export default function Add() {
 	return (
 		<>
 
-			<div className="title pt">{title}</div>
+			<div className="title">{title}</div>
 
 			<form className="add__form" onSubmit={handleSubmit}>
 
@@ -130,7 +136,7 @@ export default function Add() {
 				{/* // !! MAIN INFO */}
 				<div className="f2">
 
-					<div className="title2">Main Info</div>
+					<div className="title2">main info</div>
 
 					<Input name="title" value={form.title} onChange={handleChange} placeholder="title: text" />
 					<Input type="number" name="weight" value={form.weight} onChange={handleChange} placeholder="weight: number" />
@@ -147,7 +153,7 @@ export default function Add() {
 						onChange={handleChangeFile}
 					/>
 
-					<img src={imgLoaded || imgDummy} onClick={() => fileRef.current.click()} />
+					<img className="cp" src={imgLoaded || imgDummy} onClick={() => fileRef.current.click()} />
 					{/* // ? FILE */}
 
 					<Input type="number" name="price" value={form.price} onChange={handleChange} placeholder="price: number" />
@@ -158,7 +164,7 @@ export default function Add() {
 				{/* // !! OTHER */}
 				<div className="f3">
 
-					<div className="title2">Delivery</div>
+					<div className="title2">delivery</div>
 
 					<Input type="textarea" name="delivery" value={form.delivery} onChange={handleChange} placeholder="delivery: text" />
 					<Input type="textarea" name="payment" value={form.payment} onChange={handleChange} placeholder="payment: text" />
@@ -169,13 +175,13 @@ export default function Add() {
 				<p className="f4">
 					<button className="brandBtn">{title}</button>
 				</p>
-
-				{/* // todo DELETE LATER */}
-				<p className="f5">
-					<button onClick={() => (test_())}>test</button>
-				</p>
-				{/* // todo DELETE LATER */}
 			</form>
+
+			{/* // todo DELETE LATER */}
+			<p className="f5 fcc mb2">
+				<button onClick={() => (test_())}>test</button>
+			</p>
+			{/* // todo DELETE LATER */}
 
 		</>
 	)
