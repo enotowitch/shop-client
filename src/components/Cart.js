@@ -2,10 +2,13 @@ import React, { useContext, useEffect } from "react"
 import { Context } from "../Context"
 import ProdView from "./ProdView"
 import { weight_, currency } from "../consts"
+import useTranslate from "../hooks/useTranslate"
 
 export default function Cart() {
 
 	const { prods, user, userUpdate } = useContext(Context)
+	const [t] = useTranslate()
+
 	const userCarted = prods?.filter(prod => user?.carted.includes(prod._id))
 
 	useEffect(() => {
@@ -42,11 +45,11 @@ export default function Cart() {
 					?
 					<div className="total p">
 						<div className="fsb mb">
-							<span className="title m0">Total</span>
+							<span className="title m0">{t("Total")}</span>
 							<span className="title m0" translate="no">{currency}{total.toFixed(2)}</span>
 						</div>
 
-						<div>Order instructions</div>
+						<div>Your wishes regarding the order</div>
 						<textarea
 							type="textarea"
 						/>

@@ -8,11 +8,13 @@ import { Link } from "react-router-dom"
 import Icon from "./icons/Icon"
 import Icons from "./icons/Icons"
 import usePrevent from "../hooks/usePrevent"
+import useTranslate from "../hooks/useTranslate"
 
 
 export default function ProdView(props) {
 
 	const [prevent] = usePrevent()
+	const [t] = useTranslate()
 
 	const { user, userUpdate } = useContext(Context)
 
@@ -76,7 +78,7 @@ export default function ProdView(props) {
 
 				{mode !== "cart" &&
 					<>
-						<span className="prod__status">{additionalInfo || mode || "check it out!"}</span>
+						<span className="prod__status">{additionalInfo || t(mode) || t("check it out") + "!"}</span>
 
 						<div className="prod__icons">
 							<Icons _id={_id} />
