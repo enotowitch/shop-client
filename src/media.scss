@@ -9,12 +9,12 @@
 		// width: auto;
 		height: 100vh;
 		justify-content: flex-start;
-		// !!! one cat
+		// * one cat
 		span {
 			line-height: 200%;
 		}
 	}
-// order of `sections` in .add__form
+	// ! order of `sections` in .add__form
 	.f1{
 		order: 2;
 	}
@@ -30,6 +30,17 @@
 	.f5{
 		order: 5;
 	}
+	// ? order of `sections` in .add__form
+	// ! prod cart 
+	.prod_cart{
+		padding: 0;
+		padding-right: 15px;
+	}
+	// prod__photo
+	.prod_cart .prod__photo{
+		object-fit: contain;
+	}
+	// ? prod cart 
 }
 
 @media (min-width:701px) {

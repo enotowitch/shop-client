@@ -38,6 +38,7 @@ input, textarea {
 }
 
 button{
+	position: relative;
 	width: 100%;
 	max-width: $widthSmall;
 	height: 40px;
@@ -46,6 +47,12 @@ button{
 	border: none;
 	border-radius: $borRadBig;
 	text-transform: uppercase;
+	box-shadow: $boxShadow;
+	&:hover{
+		transition: .5s;
+		box-shadow: none;
+		top: 1px;
+	}
 }
 
 input{
@@ -91,6 +98,13 @@ label {
 // cursor pointer
 .cp, select, button, .prod__icon, .section, .FAQ{
 	cursor: pointer;
+}
+
+[class*="icon"]{
+	&:hover{
+		transition: .2s;
+		filter: saturate(750%);
+	}
 }
 // ? GLOBAL
 
@@ -172,13 +186,26 @@ $prodNum: 4;
 		max-width: $widthSmall * 2;
 		margin: 0;
 		margin-top: 15px;
-		// !!!
-		img:not([src*="media/del"]){
-			width: 100px;
+		.prod__photo{
+			object-fit: cover;
+			// object-fit: contain;
+			width: 200px;
+			min-width: 80px;
+		}
+		.prod__info{
+			width: 250px;
+			min-width: 80px;
+		}
+		.prod__counter{
+			width: 90px;
+			min-width: 70px;
+		}
+		.prod__icon{
+			margin-left: 15px;
 		}
 		// !!!
 		> *:not(:last-child) {
-			width: 33%;
+			// width: 33%;
 		}
 	}
 	&_viewed{
@@ -199,7 +226,7 @@ $prodNum: 4;
 	}
 	// ! photo
 	&__photo{
-		width: 100%;
+		// width: 100%;
 		height: 160px;
 		object-fit: contain;
 	}
@@ -220,14 +247,6 @@ $prodNum: 4;
 	&__info, &__counter{
 		white-space: nowrap;
 		overflow: hidden;
-	}
-	&__counter{
-		overflow: visible;
-		// !!! +/-
-		span {
-			display: inline-block;
-			width: 40%;
-		}
 	}
 	&__title{
 		color: $gray;
@@ -256,16 +275,22 @@ $prodNum: 4;
 		border: 2px solid $brand;
 		border-radius: $borRadSmall;
 		padding: 4px;
-		// !!!
+		overflow: visible;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		// !!! +/-
 		span {
 			color: $gray;
-			padding: 4px 10px;
 			font-size: 22px;
+			width: 34%;
 		}
 		// !!!
 		div{
 			border-top: 2px solid $brand;
 			padding-top: 10px;
+			width: 100%;
 		}
 	}
 }
@@ -603,10 +628,6 @@ body{ top: 0 !important;}
 // top frame 2
 .skiptranslate iframe {display: none !important;} 
 body {top: 0px !important;}
-// top frame 3
-// body > .skiptranslate {
-// 	display: none;
-// }
 // top left loader img
 .VIpgJd-ZVi9od-aZ2wEe-wOHMyf{display: none !important;}
 // ? google translate
