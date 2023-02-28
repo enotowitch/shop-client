@@ -23,8 +23,8 @@ export default function App() {
 				<Route exact path="/cart" element={<Cart />} />
 				<Route exact path="/like" element={<Like />} />
 
-				<Route exact path="prod/:id" element={<ProdFull />} />
-				<Route exact path="search/:query" element={<Search />} />
+				<Route exact path="/prod/:id" element={<ProdFull />} />
+				<Route exact path="/search/:query" element={<Search />} />
 			</Routes>
 
 			<Recently type="viewed" />

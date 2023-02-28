@@ -451,6 +451,7 @@ $prodFullWidth: 600px;
 	// color: $black; // var 2
 	font-weight: 700;
 	text-transform: uppercase;
+	white-space: nowrap;
 	&_active{
 		color: darken($brand, 25%);
 	}
@@ -498,6 +499,7 @@ $prodFullWidth: 600px;
 // ! Burger
 #menu__toggle {
 	opacity: 0;
+	width: 0;
  }
  #menu__toggle:checked + .menu__btn > span {
 	transform: rotate(45deg);

@@ -8,7 +8,6 @@ export default function Search() {
 	const { query } = useParams()
 
 	let searchValue = query?.match(/(?:searchValue=)(.+?)(?:&)/)[1]
-	searchValue.match(/&/) && (searchValue = "All Products") // if `error` (don't change `(.+?)` in above match, not english will not work) searchValue = `all...`
 
 	const field = query?.match(/(?:field=)(.+?)(?:&)/)[1]
 	const [searched, searchedSet] = useState()

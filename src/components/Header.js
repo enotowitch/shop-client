@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react"
-import { Link } from "react-router-dom"
 import search from "../img/search.svg"
 import logo from "../img/logo.png"
 import { Context } from "../Context"
@@ -14,6 +13,7 @@ import liked from "../img/liked.svg"
 import cart from "../img/cart.svg"
 import carted from "../img/carted.svg"
 import add from "../img/add.svg"
+import HeaderLink from "../components/links/HeaderLink"
 
 
 
@@ -24,27 +24,29 @@ export default function Header() {
 	const isAdmin = user?.email?.match(/admin/i)?.[0] // TODO
 
 	const searchIcon = () => (
-		<SearchLink searchValue={value} field="text"><img className="header__icon" src={search} /></SearchLink>
+		value // if smth in search input
+			? <SearchLink searchValue={value} field="text"><img className="header__icon" src={search} /></SearchLink>
+			: <img className="header__icon" src={search} />
 	)
 
 	const logoIcon = () => (
 		<div className="header__wrap">
-			<Link to="/"><img className="header__logo" src={logo} /></Link>
+			<HeaderLink to="/"><img className="header__logo" src={logo} /></HeaderLink>
 		</div>
 	)
 
 	const profileIcon = () => (
 		user
-			? <Link to="/profile"><img className="header__icon" src={profiled} /></Link>
-			: <Link to="/profile"><img className="header__icon" src={profile} /></Link>
+			? <HeaderLink to="/profile"><img className="header__icon" src={profiled} /></HeaderLink>
+			: <HeaderLink to="/profile"><img className="header__icon" src={profile} /></HeaderLink>
 	)
 
 	const likeIcon = () => (
 		user?.liked?.length > 0
-			? <Link to="/like"><img className="header__icon" src={liked} />
+			? <HeaderLink to="/like"><img className="header__icon" src={liked} />
 				<b className="cart__num ml3">{user?.liked?.length}</b>
-			</Link>
-			: <Link to="/like"><img className="header__icon" src={like} /></Link>
+			</HeaderLink>
+			: <HeaderLink to="/like"><img className="header__icon" src={like} /></HeaderLink>
 	)
 
 	const cartIcon = () => {
@@ -52,16 +54,16 @@ export default function Header() {
 		user?.carted.map(id => !uniqId.includes(id) && (uniqId.push(id)))
 
 		return user?.carted?.length > 0
-			? <Link to="/cart">
+			? <HeaderLink to="/cart">
 				<img className="header__icon" src={carted} />
 				<b className="cart__num">{uniqId?.length}</b>
-			</Link>
-			: <Link to="/cart"><img className="header__icon" src={cart} /></Link>
+			</HeaderLink>
+			: <HeaderLink to="/cart"><img className="header__icon" src={cart} /></HeaderLink>
 	}
 
 	const addIcon = () => (
 		isAdmin
-		&& <Link to="/add"><img className="header__icon" src={add} /></Link>
+		&& <HeaderLink to="/add"><img className="header__icon" src={add} /></HeaderLink>
 	)
 
 	// !! categories
@@ -102,8 +104,13 @@ export default function Header() {
 	// compute !FIXED! header height for marginBottom
 	const [hh, hhSet] = useState()
 	useEffect(() => {
-		hhSet(document?.querySelector(".header")?.clientHeight + 30)
-	}, [])
+		// set marginBottom from `header div` everywhere (+30px) but `HOME PAGE`(0px)
+		if (window.location.pathname !== "/") {
+			hhSet(document?.querySelector(".header")?.clientHeight + 30)
+		} else {
+			hhSet(document?.querySelector(".header")?.clientHeight)
+		}
+	}, [window.location.pathname])
 
 	// ! redirect
 	const navigate = useNavigate()

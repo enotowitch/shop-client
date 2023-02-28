@@ -1,0 +1,59 @@
+POSSIBLE solution:
+https://github.com/facebook/react/issues/11538
+
+
+
+text:
+
+
+
+Adding a bit more of information. The examples below are based on the ones by @hyperknot and @fritz-c.
+
+The problem is that Google Translate replaces text nodes with <font> tags containing translations while React keeps references to the text nodes that are no longer in the DOM tree.
+
+=======
+React throws in the following cases:
+
+1. A text node is conditionally rendered and it's not the only child of its parent. Then React calls parent.removeChild(textNode) when the text node is removed and throws because textNode is no longer a child of parent. https://codesandbox.io/s/74k8lz417x
+When a conditionally rendered text node is the only child of its parent, React doesn't throw. https://codesandbox.io/s/5kljl5l5yx
+
+2. A node before a text node is conditionally rendered. Then React calls parent.insertBefore(someNode, textNode) when the node is inserted and throws because textNode is no long a child of parent. https://codesandbox.io/s/q7n4mk7m86
+=======
+
+// Case 1
+<div>
+  {condition && 'Welcome'}
+  <span>Something</span>
+</div>
+
+// Doesn't throw
+<div>
+  {condition && 'Welcome'}
+</div>
+
+// Case 2
+<div>
+  {condition && <span>Something</span>}
+  Welcome
+</div>
+
+======
+!!! Workaround
+
+We can avoid these errors by invalidating the conditions above. The easiest workaround is to wrap those text nodes with <span> so that nodes referenced by React will stay in the DOM tree even though their contents are replaced with <font> tags.
+
+===
+
+// A workaround for case 1
+<div>
+  {condition && <span>Welcome</span>}
+  <span>Something</span>
+</div>
+
+// A workaround for case 2
+<div>
+  {condition && <span>Something</span>}
+  <span>Welcome</span>
+</div>
+
+===
