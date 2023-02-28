@@ -601,7 +601,7 @@ animation: opAnim 2s forwards;
 body{ top: 0 !important;}
 .goog-te-banner-frame{display: none !important;}
 // top frame 2
-.goog-te-banner-frame.skiptranslate {display: none !important;} 
+.skiptranslate iframe {display: none !important;} 
 body {top: 0px !important;}
 // top frame 3
 // body > .skiptranslate {
