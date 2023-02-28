@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { Context } from "../../Context"
 import * as api from "../../api"
 import { useNavigate } from "react-router-dom"
+import usePrevent from "../../hooks/usePrevent"
 
 export default function Icon({ _id, name }) {
 	// *** name must match 1. img src 2. db table name 3. function name (e.g. "liked, carted", ...) 
@@ -24,6 +25,7 @@ export default function Icon({ _id, name }) {
 
 	const { user, userUpdate, prodsUpdate } = useContext(Context)
 	const navigate = useNavigate()
+	const [prevent] = usePrevent()
 
 	// ! iconState
 	const [iconState, iconStateSet] = useState(user?.[name]?.includes(_id))
@@ -35,16 +37,6 @@ export default function Icon({ _id, name }) {
 	// ? iconState
 
 	// !! FUNCTIONS
-	// ! redirect
-	function redirect(e) {
-		!user && navigate("/profile")
-	}
-	// ! prevent
-	function prevent(e) {
-		e.stopPropagation()
-		e.preventDefault()
-		redirect()
-	}
 	// ! delAnim
 	function delAnim(e, callback) {
 		prevent(e)

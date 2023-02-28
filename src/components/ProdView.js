@@ -4,14 +4,15 @@ import * as api from "../api"
 import { Context } from "../Context"
 import SearchLink from "./links/SearchLink"
 import { currency, weight_ } from "../consts"
-import { useNavigate, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import Icon from "./icons/Icon"
 import Icons from "./icons/Icons"
+import usePrevent from "../hooks/usePrevent"
 
 
 export default function ProdView(props) {
 
-	const navigate = useNavigate()
+	const [prevent] = usePrevent()
 
 	const { user, userUpdate } = useContext(Context)
 
@@ -28,18 +29,6 @@ export default function ProdView(props) {
 
 
 	// !! FUNCTIONS
-	// todo HAS DUP
-	// ! redirect
-	function redirect(e) {
-		!user && navigate("/profile")
-	}
-	// todo HAS DUP
-	// ! prevent
-	function prevent(e) {
-		e.stopPropagation()
-		e.preventDefault()
-		redirect()
-	}
 	// ?? FUNCTIONS
 
 	const categories_ = categories?.split(",").map(cat => <SearchLink key={cat} searchValue={cat} field="categories"><span className="prod__cat">{cat}</span></SearchLink>)

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import * as api from "../api"
 import { currency, weight_ } from "../consts"
 import { Context } from "../Context"
+import useRedirect from "../hooks/useRedirect"
 import FAQ from "./FAQ"
 import Icons from "./icons/Icons"
 import ProdMenu from "./ProdMenu"
@@ -13,6 +14,7 @@ export default function ProdFull() {
 
 	const { id } = useParams()
 	const navigate = useNavigate()
+	const [redirect] = useRedirect()
 
 	const [prod, prodSet] = useState()
 
@@ -35,6 +37,7 @@ export default function ProdFull() {
 	}, [id])
 
 	async function buy() {
+		redirect()
 		const res = await api.carted(id, "many+")
 		res && navigate("/cart")
 	}

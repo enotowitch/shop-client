@@ -72,6 +72,7 @@ textarea{
 
 a{
 	text-decoration: none;
+	color: $black;
 	&:visited{
 		color: #000;
 	}
@@ -581,6 +582,23 @@ animation: opAnim 2s forwards;
 .skiptranslate{
 	top: -50px;
 }
+// tooltip
+.goog-tooltip {
+	display: none !important;
+}
+.goog-tooltip:hover {
+	display: none !important;
+}
+.goog-text-highlight {
+	background-color: transparent !important;
+	border: none !important; 
+	box-shadow: none !important;
+}
+#goog-gt-, .goog-te-balloon-frame{display: none !important;} 
+.goog-text-highlight { background: none !important; box-shadow: none !important;}
+// top frame
+.goog-te-banner-frame{display: none !important;} 
+.VIpgJd-ZVi9od-ORHb{display: none !important;}
 // ? google translate
 
 // ! OTHER
