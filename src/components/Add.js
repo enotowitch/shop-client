@@ -66,6 +66,7 @@ export default function Add() {
 	const handleChangeFile = async (e) => {
 		const formData = new FormData()
 		formData.append("image", e.target.files[0])
+		alert(e.target.files[0].name)
 
 		const img = await api.uploadProdImg(formData)
 		formSet(prev => ({ ...prev, imgUrl: img.url }))
