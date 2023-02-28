@@ -597,8 +597,9 @@ animation: opAnim 2s forwards;
 #goog-gt-, .goog-te-balloon-frame{display: none !important;} 
 .goog-text-highlight { background: none !important; box-shadow: none !important;}
 // top frame
-.goog-te-banner-frame{display: none !important;} 
 .VIpgJd-ZVi9od-ORHb{display: none !important;}
+body{ top: 0 !important;}
+.goog-te-banner-frame{display: none !important;}
 // ? google translate
 
 // ! OTHER
