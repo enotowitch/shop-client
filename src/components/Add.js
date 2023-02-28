@@ -66,11 +66,11 @@ export default function Add() {
 	const handleChangeFile = async (e) => {
 		const formData = new FormData()
 		formData.append("image", e.target.files[0])
-		alert(e.target.files[0].name)
 
 		const img = await api.uploadProdImg(formData)
-		formSet(prev => ({ ...prev, imgUrl: img.url }))
-		imgLoadedSet(img.url)
+		const fakeImg = "https://cdn.shopify.com/s/files/1/2185/7175/products/VegieChips_The_Nut_Market_202_1080x1080.png?v=1593392904"
+		formSet(prev => ({ ...prev, imgUrl: img.url || fakeImg }))
+		imgLoadedSet(img.url || fakeImg)
 	}
 	// ? handleChangeFile
 
