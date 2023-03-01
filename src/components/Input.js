@@ -4,7 +4,7 @@ import React from "react"
 export default function Input({ type, name, value, onChange, placeholder, className }) {
 
 	const pattern = type === "tel" && "[0-9]{3}[0-9]{7}"
-	const required = type === "tel" && true
+	// const required = type === "tel" && true
 
 	// type = text / textarea
 	return (
@@ -19,7 +19,7 @@ export default function Input({ type, name, value, onChange, placeholder, classN
 						onChange={onChange}
 						placeholder={placeholder}
 						className={className}
-						required={required}
+						required={true}
 						pattern={pattern}
 					/>
 				</label>
