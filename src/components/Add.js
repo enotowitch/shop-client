@@ -14,24 +14,24 @@ export default function Add() {
 		||
 		{
 			// ! MAIN
-			title: `${Math.random()}`, // 
-			weight: `${Math.random()}`, // 
-			categories: `${Math.random()}`, // 
-			text: `${Math.random()}`, // 
+			title: ``, // ${Math.random()}
+			weight: ``, // ${Math.random()}
+			categories: ``, // ${Math.random()}
+			text: ``, // ${Math.random()}
 			imgUrl: ``,
-			price: `${Math.random()}`, // 
+			price: ``, // ${Math.random()}
 			// ! SECONDARY
-			composition: `${Math.random()}`, // 
-			calories: `${Math.random()}`, // 
-			proteins: `${Math.random()}`, // 
-			fats: `${Math.random()}`, // 
-			carbohydrates: `${Math.random()}`, // 
-			expiration: `${Math.random()}`, // 
-			temperature: `${Math.random()}`, // 
+			composition: ``, // ${Math.random()}
+			calories: ``, // ${Math.random()}
+			proteins: ``, // ${Math.random()}
+			fats: ``, // ${Math.random()}
+			carbohydrates: ``, // ${Math.random()}
+			expiration: ``, // ${Math.random()}
+			temperature: ``, // ${Math.random()}
 			// ! OTHER
-			delivery: ``, // ${JSON.parse(localStorage.getItem("delivery"))}
-			payment: ``, // ${JSON.parse(localStorage.getItem("payment"))}
-			warranty: ``, // ${JSON.parse(localStorage.getItem("warranty"))}
+			delivery: `${JSON.parse(localStorage.getItem("delivery"))}`, // 
+			payment: `${JSON.parse(localStorage.getItem("payment"))}`, // 
+			warranty: `${JSON.parse(localStorage.getItem("warranty"))}`, // 
 		}
 	)
 

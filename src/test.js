@@ -371,7 +371,7 @@ export default
 			// ! MAIN
 			title: `Almond Butter`,
 			weight: `300`,
-			categories: `butter`,
+			categories: `nuts butter`,
 			text: `Our almond-butter is a product we make in-store each week. It's as fresh as you can get and a delicious spread. To make almond butter, we use Australian-grown almonds and grind them down in our in-house nut mill. We use dry-roasted almonds to bring out the nicest flavour and texture. Compared with using raw almonds, roasted almond butter is richer and healthier. The Nut Market's almond butter is always nutritious, fresh and completely delicious.`,
 			imgUrl: `https://cdn.shopify.com/s/files/1/2185/7175/products/AlmondButterProduct_800x800.png?v=1597659876`,
 			price: `11.75`,
@@ -392,7 +392,7 @@ export default
 			// ! MAIN
 			title: `Chocolate Hazelnut Butter`,
 			weight: `300`,
-			categories: `butter, chocolate`,
+			categories: `nuts butter, chocolate`,
 			text: `We take the highest quality, dry roasted hazelnuts, mix them with our Organic Vegan Dark Chocolate Callets and grind it all down in our in-house nut mill to make our famous Nut Market Chocolate Hazelnut Butter. This vegan Nutella like spread contains no additives, including sugar or salt – often found in commercial nut butters, it's preservative free and ready to eat by the spoonful! Hazelnut chocolate butter is delicious as a spread or can be added to desserts, raw food recipes and sweet baked goods.`,
 			imgUrl: `https://cdn.shopify.com/s/files/1/2185/7175/products/HazelnutChocolateButterProduct_800x800.png?v=1597662729`,
 			price: `13.95`,
@@ -413,7 +413,7 @@ export default
 			// ! MAIN
 			title: `Macadamia Butter`,
 			weight: `270`,
-			categories: `butter`,
+			categories: `nuts butter`,
 			text: `We make our macadamia nut butter by hand, in-store every week. Our macadamia nut butter is some of the freshest you will find. Using Australian-grown, raw macadamias, we blend them down in our in-house nut mill. The process produces a pure and creamy Macadamia Nut Butter. This mild-tasting spread contains no additives, including sugar or salt. Anyone who eats nut butters knows that they are usually full of preservatives. Ours is preservative-free and ready to eat by the spoonful! Macadamia nut butter is delicious as a spread. It is also great in desserts, raw food recipes, savoury and sweet baked goods.`,
 			imgUrl: `https://cdn.shopify.com/s/files/1/2185/7175/products/MacadamiaButterProduct_800x800.png?v=1597664880`,
 			price: `19.95`,

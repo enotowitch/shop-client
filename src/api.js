@@ -17,11 +17,10 @@ export const authType = async (type, form) => {
 	try {
 		const { data } = await instance.post(type, form)
 		data?.token && localStorage.setItem("token", data.token)
-		alert(`SUCCESS ${type}`)
+		// alert(`SUCCESS ${type}`)
 		return data // userData
 	} catch (err) {
-		console.log(err)
-		alert(`FAIL TO ${type}`)
+		return err.response.data
 	}
 }
 

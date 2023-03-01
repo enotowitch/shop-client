@@ -32,6 +32,7 @@
 
 			document.cookie = `googtrans=/${browserLang}`
 			document.cookie = `autoLangSet=true`
+			window.location.reload() // ! wrong googTrans on first load FIX
 		}
 		// ! save lang on reload
 		setInterval(() => {

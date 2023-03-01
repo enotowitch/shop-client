@@ -1,12 +1,15 @@
 import React from "react"
 
 
-export default function Input({ type, name, value, onChange, placeholder }) {
+export default function Input({ type, name, value, onChange, placeholder, className }) {
+
+	const pattern = type === "tel" && "[0-9]{3}[0-9]{7}"
+	const required = type === "tel" && true
 
 	// type = text / textarea
 	return (
 		<>
-			{(type === "text" || type === "number" || !type) &&
+			{(type === "text" || type === "number" || type === "tel" || !type) &&
 				<label>
 					{name}
 					<input
@@ -15,6 +18,9 @@ export default function Input({ type, name, value, onChange, placeholder }) {
 						value={value}
 						onChange={onChange}
 						placeholder={placeholder}
+						className={className}
+						required={required}
+						pattern={pattern}
 					/>
 				</label>
 			}

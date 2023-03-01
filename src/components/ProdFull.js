@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import * as api from "../api"
-import { currency, weight_ } from "../consts"
+import { currency, weight_, exp } from "../consts"
 import { Context } from "../Context"
 import useRedirect from "../hooks/useRedirect"
 import FAQ from "./FAQ"
@@ -61,7 +61,7 @@ export default function ProdFull() {
 							<FAQ title="proteins" text={prod.proteins} />
 							<FAQ title="fats" text={prod.fats} />
 							<FAQ title="carbohydrates" text={prod.carbohydrates} />
-							<FAQ title="expiration" text={prod.expiration} />
+							<FAQ title="expiration" text={prod.expiration + exp} />
 							<FAQ title="temperature" text={prod.temperature} />
 						</>
 

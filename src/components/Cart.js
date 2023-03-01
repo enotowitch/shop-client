@@ -3,6 +3,7 @@ import { Context } from "../Context"
 import ProdView from "./ProdView"
 import { weight_, currency } from "../consts"
 import useTranslate from "../hooks/useTranslate"
+import Input from "./Input"
 
 export default function Cart() {
 
@@ -43,21 +44,22 @@ export default function Cart() {
 
 				{userCarted?.length > 0
 					?
-					<div className="total p">
+					<form className="total p" onSubmit={() => alert(t("thank you for the order, we will contact you soon"))}>
 						<div className="fsb mb">
 							<span className="title m0">{t("Total")}</span>
 							<span className="title m0" translate="no">{currency}{total.toFixed(2)}</span>
 						</div>
 
-						<div>Your wishes regarding the order</div>
-						<textarea
-							type="textarea"
-						/>
+						<Input type="tel" name="phone" placeholder="e.g: 0950123456" className="mb2" />
+
+						<div className="fsi">Your wishes regarding the order</div>
+
+						<Input type="textarea" />
 
 						<div>Please check the details of your order carefully, by continuing you acknowledge that your order cannot be changed once submitted.</div>
 
-						<button className="brandBtn">Checkout</button>
-					</div>
+						<button className="brandBtn">make an order</button>
+					</form>
 					:
 					<div className="title danger w100">Your cart is empty</div>
 				}

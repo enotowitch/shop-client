@@ -2,14 +2,17 @@ import React, { useContext, useState } from "react"
 import * as api from "../api"
 import { Context } from "../Context"
 import { useNavigate } from "react-router-dom"
+import useTranslate from "../hooks/useTranslate"
 
 export default function Login() {
 
 	const { user, userSet, userUpdate } = useContext(Context)
 	const navigate = useNavigate()
+	const [t] = useTranslate()
 
 	const [form, formSet] = useState({ email: "", password: "" })
 	const [type, typeSet] = useState("Login")
+	const typeTranslated = t(type)
 
 	function handleChange(e) {
 		formSet(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -20,7 +23,8 @@ export default function Login() {
 		let res // userData
 		type === "Register" && (res = await api.authType("register", form))
 		type === "Login" && (res = await api.authType("login", form))
-		res && navigate("/")
+		res.msg && alert(t(res.msg))
+		res.success && navigate("/")
 		userUpdate()
 	}
 
@@ -36,7 +40,7 @@ export default function Login() {
 
 				{!user ?
 					<>
-						<h3 className="login__title">{type}</h3>
+						<h3 className="login__title title2 mb2">{typeTranslated}</h3>
 
 						<label>
 							Email
@@ -48,6 +52,7 @@ export default function Login() {
 								onChange={handleChange}
 								placeholder="type your email"
 								autoFocus
+								required
 							/>
 						</label>
 
@@ -60,15 +65,17 @@ export default function Login() {
 								value={form.password}
 								onChange={handleChange}
 								placeholder="type your password"
+								minLength={6}
+								required
 							/>
 						</label>
 
-						<button className="brandBtn">{type.toUpperCase()}</button>
+						<button className="brandBtn">{typeTranslated.toUpperCase()}</button>
 
 						<div className="tac mt2 cp">
 							or&nbsp;
-							<span onClick={() => typeSet(prev => prev === "Register" ? "Login" : "Register")}>
-								{type === "Register" ? "Login" : "Register"}
+							<span className="brand" onClick={() => typeSet(prev => prev === "Register" ? "Login" : "Register")}>
+								{type === "Register" ? t("login") : t("register")}
 							</span>
 						</div>
 					</>

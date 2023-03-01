@@ -3,6 +3,7 @@ import { Context } from "../../Context"
 import * as api from "../../api"
 import { useNavigate } from "react-router-dom"
 import usePrevent from "../../hooks/usePrevent"
+import useTranslate from "../../hooks/useTranslate"
 
 export default function Icon({ _id, name }) {
 	// *** name must match 1. img src 2. db table name 3. function name (e.g. "liked, carted", ...) 
@@ -26,6 +27,7 @@ export default function Icon({ _id, name }) {
 	const { user, userUpdate, prodsUpdate } = useContext(Context)
 	const navigate = useNavigate()
 	const [prevent] = usePrevent()
+	const [t] = useTranslate()
 
 	// ! iconState
 	const [iconState, iconStateSet] = useState(user?.[name]?.includes(_id))
@@ -70,16 +72,16 @@ export default function Icon({ _id, name }) {
 	// ! delProd
 	async function del(e, _id) {
 		prevent(e)
-		// if (window.confirm("DELETE PRODUCT?")) {
-		delAnim(e, async () => {
-			await api.delProd(_id)
-			prodsUpdate()
-			// * if in ProdFull
-			if (window.location.pathname.includes("/prod/")) {
-				window.location.reload()
-			}
-		})
-		// }
+		if (window.confirm(t("delete product") + "?")) {
+			delAnim(e, async () => {
+				await api.delProd(_id)
+				prodsUpdate()
+				// * if in ProdFull
+				if (window.location.pathname.includes("/prod/")) {
+					window.location.reload()
+				}
+			})
+		}
 	}
 	// ! likeProd
 	async function liked(e, _id) {
