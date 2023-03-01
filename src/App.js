@@ -9,6 +9,7 @@ import ProdFull from "./components/ProdFull"
 import Search from "./components/Search"
 import Like from "./components/Like"
 import Recently from "./components/Recently"
+import Ordered from "./components/Ordered"
 
 export default function App() {
 	return (
@@ -21,6 +22,7 @@ export default function App() {
 				<Route exact path="/add" element={<Add />} />
 				<Route exact path="/upd/:id" element={<Add />} />
 				<Route exact path="/cart" element={<Cart />} />
+				<Route exact path="/ordered" element={<Ordered />} />
 				<Route exact path="/like" element={<Like />} />
 
 				<Route exact path="/prod/:id" element={<ProdFull />} />

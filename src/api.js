@@ -11,7 +11,7 @@ instance.interceptors.request.use(config => {
 })
 
 
-// ! user
+// !! user
 // type = login or register
 export const authType = async (type, form) => {
 	try {
@@ -49,7 +49,12 @@ export const viewed = async (_id) => {
 	const { data } = await instance.patch("user/viewed", { _id })
 	return data
 }
-// ? user
+
+export const ordered = async () => {
+	const { data } = await instance.patch("user/ordered")
+	return data
+}
+// ?? user
 
 // !! prod
 // ! addProd

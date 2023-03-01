@@ -4,6 +4,7 @@ import ProdView from "./ProdView"
 import { weight_, currency } from "../consts"
 import useTranslate from "../hooks/useTranslate"
 import Input from "./Input"
+import * as api from "../api"
 
 export default function Cart() {
 
@@ -14,6 +15,7 @@ export default function Cart() {
 
 	useEffect(() => {
 		userUpdate()
+		window.scrollTo(0, 0) // !! MANDATORY 
 	}, [])
 
 	let total = 0
@@ -30,6 +32,11 @@ export default function Cart() {
 		</ProdView>
 	})
 
+	async function handleSubmit() {
+		alert(t("thank you for the order, we will contact you soon"))
+		await api.ordered() // todo alert after ordered
+	}
+
 
 	// ! RETURN
 	return (
@@ -44,7 +51,7 @@ export default function Cart() {
 
 				{userCarted?.length > 0
 					?
-					<form className="total p" onSubmit={() => alert(t("thank you for the order, we will contact you soon"))}>
+					<form className="total p" onSubmit={handleSubmit}>
 						<div className="fsb mb">
 							<span className="title m0">{t("Total")}</span>
 							<span className="title m0" translate="no">{currency}{total.toFixed(2)}</span>

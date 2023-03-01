@@ -3,6 +3,7 @@ import * as api from "../api"
 import { Context } from "../Context"
 import { useNavigate } from "react-router-dom"
 import useTranslate from "../hooks/useTranslate"
+import HeaderLink from "./links/HeaderLink"
 
 export default function Login() {
 
@@ -87,6 +88,10 @@ export default function Login() {
 						<div className="mb">{user.email}</div>
 						<span className="title">Member Since:</span>
 						<div className="mb">{user.createdAt.match(/\d+-\d+-\d+/)[0]} / {user.createdAt.match(/(?:T)(\d+:\d+:\d+)/)[1]}</div>
+						<HeaderLink to="/ordered">
+							<span className="title tdu">Ordered:</span>
+							<div className="mb">{user.ordered.length}</div>
+						</HeaderLink>
 						<span className="title">Carted:</span>
 						<div className="mb">{user.carted.length}</div>
 						<span className="title">Liked:</span>

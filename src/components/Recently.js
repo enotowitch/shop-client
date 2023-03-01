@@ -34,7 +34,7 @@ export default function Recently(props) {
 	let { pathname } = useLocation()
 	pathname = pathname !== "/" && pathname?.match(/(?:)(\w+)/)[1]
 
-	const notShow = ["add", "profile", "upd"]
+	const notShow = ["add", "profile", "upd", "ordered"]
 	// ? notShow
 
 
