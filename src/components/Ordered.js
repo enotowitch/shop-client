@@ -9,7 +9,7 @@ export default function Ordered() {
 	const ordered = user?.ordered.map(order => {
 
 		const time = order.time.match(/(.+)(?:\sGMT)/)[1]
-		const ordered = prods.filter(prod => order.prods.includes(prod._id))
+		const ordered = prods?.filter(prod => order.prods.includes(prod._id))
 
 		return <div>
 			<div className="title">{time}</div>
@@ -21,7 +21,11 @@ export default function Ordered() {
 
 	return (
 		<>
-		<div className="title">Ordered:</div>
+			{ordered?.length > 0
+				? <div className="title">Ordered:</div>
+				: <div className="title danger">You have no orders yet</div>
+			}
+
 			{ordered}
 		</>
 	)
