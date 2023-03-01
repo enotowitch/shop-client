@@ -80,8 +80,7 @@ export default function Header() {
 
 	const categories = []
 	prods?.map(prod => {
-		// todo .split(", ") => adding new prod admin must write: prodCat1, prodCat2, prodCat3... (,<space>)
-		prod?.categories?.split(", ").map(cat => !categories.includes(cat) && categories.push(cat))
+		prod?.categories?.split(",").map(cat => !categories.includes(cat.trim()) && categories.push(cat.trim()))
 	})
 
 	function catFn(e) {

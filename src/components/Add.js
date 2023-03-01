@@ -29,9 +29,9 @@ export default function Add() {
 			expiration: ``, // ${Math.random()}
 			temperature: ``, // ${Math.random()}
 			// ! OTHER
-			delivery: `${JSON.parse(localStorage.getItem("delivery"))}`, // 
-			payment: `${JSON.parse(localStorage.getItem("payment"))}`, // 
-			warranty: `${JSON.parse(localStorage.getItem("warranty"))}`, // 
+			delivery: `${JSON.parse(localStorage.getItem("delivery")) || ""}`, // 
+			payment: `${JSON.parse(localStorage.getItem("payment")) || ""}`, // 
+			warranty: `${JSON.parse(localStorage.getItem("warranty")) || ""}`, // 
 		}
 	)
 

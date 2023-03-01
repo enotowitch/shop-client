@@ -34,6 +34,7 @@ export default function Input({ type, name, value, onChange, placeholder, classN
 						value={value}
 						onChange={onChange}
 						placeholder={placeholder}
+						required={true}
 					/>
 				</label>
 			}
