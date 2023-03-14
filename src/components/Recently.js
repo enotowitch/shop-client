@@ -3,8 +3,12 @@ import * as api from "../api"
 import ProdView from "./ProdView"
 import { Context } from "../Context"
 import { useLocation } from "react-router-dom"
+import arrow from "../img/arrow.svg"
+import { useRef } from "react"
 
 export default function Recently(props) {
+
+	const recentlyRef = useRef(null)
 
 	const { prods, user } = useContext(Context)
 	const { type } = props
@@ -37,17 +41,23 @@ export default function Recently(props) {
 	const notShow = ["add", "profile", "upd", "ordered"]
 	// ? notShow
 
+	function scroll(e, direction) {
+		direction === "left" && recentlyRef.current.scrollBy(-150, 0)
+		direction === "right" && recentlyRef.current.scrollBy(150, 0)
+	}
 
 	// ! RETURN
 	return (
 		<>
-			{!notShow.includes(pathname) &&
-				<>
-					{prod_?.length > 0 && <div className="title">{title}:</div>}
-					<div className="prods recently">
+			{prod_?.length > 0 && !notShow.includes(pathname) &&
+				<div className="recently__wrap">
+					<div className="title">{title}:</div>
+					<img className="recently__left zi9 opAnim" src={arrow} onClick={(e) => scroll(e, "left")} />
+					<div className="prods recently" ref={recentlyRef}>
 						{prod_}
 					</div>
-				</>
+					<img className="recently__right zi9 opAnim" src={arrow} onClick={(e) => scroll(e, "right")} />
+				</div>
 			}
 		</>
 	)

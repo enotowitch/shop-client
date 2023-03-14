@@ -496,9 +496,26 @@ $prodFullWidth: 600px;
 
 // ! RECENTLY
 .recently{
+	position: relative;
 	flex-wrap: nowrap;
 	justify-content: flex-start;
 	overflow: scroll;
+	&__wrap{
+		position: relative;
+		max-width: $widthBig + 150px;
+		margin: 0 auto;
+	}
+	&__right, &__left{
+		position: absolute;
+		top: 50%;
+		right: 20px;
+		width: 40px;
+		opacity: 0.5;
+	}
+	&__left{
+		left: 20px;
+		transform: rotate(180deg);
+	}
 }
 // ? RECENTLY
 
@@ -601,12 +618,11 @@ $prodFullWidth: 600px;
 }
 
 .opAnim{
-animation: opAnim 2s forwards;
+animation: opAnim 10s forwards;
 }
 
 @keyframes opAnim {
 	0%{opacity: 0;}
-	100%{opacity: 1;}
 }
 // !!! banner
 .banner{
