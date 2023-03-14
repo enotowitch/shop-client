@@ -5,6 +5,7 @@ $gray: #666666;
 $black: #1d1d1d;
 $brand: #ffac11;
 $danger: tomato;
+$brandGradient: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 // ! width
 $widthSmall: 320px;
 $widthBig: 1200px;
@@ -390,7 +391,7 @@ $prodFullWidth: 600px;
 	margin: 15px auto;
 }
 .brandBtn{
-	background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+	background-image: $brandGradient;
 	// OR
 	// background-image: linear-gradient(120deg, lighten($brand, 10%) 0%, darken($brand, 10%) 100%);
 }

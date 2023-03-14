@@ -10,11 +10,14 @@ import Search from "./components/Search"
 import Like from "./components/Like"
 import Recently from "./components/Recently"
 import Ordered from "./components/Ordered"
+import Alert from "./Alert"
 
 export default function App() {
 	return (
 		<>
 			<Header />
+
+			<Alert />
 
 			<Routes>
 				<Route exact path="/" element={<Prods />} />

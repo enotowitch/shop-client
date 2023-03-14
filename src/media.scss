@@ -1,3 +1,5 @@
+$brandGradient: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+
 @media (max-width:700px) {
 	.header__wrap{
 		width: 100%;
@@ -9,6 +11,7 @@
 		// width: auto;
 		height: 100vh;
 		justify-content: flex-start;
+		background: $brandGradient;
 		// * one cat
 		span {
 			line-height: 200%;
