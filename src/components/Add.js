@@ -180,7 +180,7 @@ export default function Add() {
 
 			{/* // todo DELETE LATER */}
 			<p className="f5 fcc mb2">
-				<button onClick={() => (test_())}>test</button>
+				<button className="testBtn" onClick={() => (test_())}>test</button>
 			</p>
 			{/* // todo DELETE LATER */}
 

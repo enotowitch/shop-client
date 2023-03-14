@@ -501,6 +501,30 @@ $prodFullWidth: 600px;
 	overflow: scroll;
 }
 // ? RECENTLY
+
+.testLogin{
+	border: 2px dashed $gray;
+	border-radius: 20px;
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	padding: 15px;
+	div{
+		width: 100%;
+		text-align: center;
+	}
+	button{
+		width: 150px;
+	}
+}
+
+.testBtn{
+	background: $white;
+	color: $black;
+	border: 1px solid;
+}
+
 // ! Burger
 #menu__toggle {
 	opacity: 0;

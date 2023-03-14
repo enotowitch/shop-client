@@ -4,6 +4,7 @@ import { Context } from "../Context"
 import { useNavigate } from "react-router-dom"
 import useTranslate from "../hooks/useTranslate"
 import HeaderLink from "./links/HeaderLink"
+import TestLogin from "./TestLogin"
 
 export default function Login() {
 
@@ -103,8 +104,9 @@ export default function Login() {
 					</>
 				}
 
-
 			</form>
+
+			{!user && <TestLogin />}
 		</>
 	)
 }
